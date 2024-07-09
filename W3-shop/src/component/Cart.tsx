@@ -24,7 +24,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" >Learn More</Button>
       </CardActions>
     </Card>
   );

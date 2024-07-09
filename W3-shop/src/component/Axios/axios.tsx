@@ -1,13 +1,33 @@
 import axios from "axios";
 
-const API_URL="http://localhost:3000/products";
 
-export const fetchAxios = async () =>{
+
+export const getAllProduct = async () =>{
       try{
-          const res= await axios.get(API_URL,{
-          });
+          const res= await axios.get("http://localhost:3000/products",{});
           return res.data;
       }catch(error){
         console.log(error)
       };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const getAllSubmit = async ()=>{
+  try{
+    const res=await axios.get("http://localhost:3000/users")
+    return res.data;
+  }catch(error){
+     alert(error); console.log(error)
+  }
 }
