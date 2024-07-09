@@ -3,6 +3,8 @@ import { Products } from '../type/Interface'
 import { getAllProduct } from './Axios/axios';
 import { Grid, CircularProgress, Typography } from '@mui/material';
 import Product from './Cart';
+import Header from './Header';
+import Footer from './Footer';
 
 
 
@@ -25,6 +27,7 @@ const Home = () => {
     if (loading) return <CircularProgress />;
   return (
     <>
+    <Header/>
        <Grid container spacing={3}>
       {products.map(product => (
         <Grid item key={product.id} xs={12} sm={6} md={4}>
@@ -32,6 +35,7 @@ const Home = () => {
         </Grid>
       ))}
     </Grid>
+    <Footer/>
     </>
  
 );

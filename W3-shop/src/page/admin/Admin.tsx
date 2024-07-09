@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react'
 import { Email, Products } from '../../type/Interface';
 import { getAllProduct, getAllSubmit } from '../../component/Axios/axios';
 import {CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material';
+import Sidebar from './type/Siber';
 
 const Admin = () => {
     const [users,getUsers] = useState<Email[]>([]);
@@ -34,6 +35,7 @@ const Admin = () => {
     if (loading) return <CircularProgress />;
   return (
     <div>
+    <h1>User</h1>
     <TableContainer component={Paper} sx={{ marginTop: 4 }}>
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
@@ -63,6 +65,7 @@ const Admin = () => {
     </Table>
   </TableContainer>
   <hr />
+  <h1>Products</h1>
   <TableContainer component={Paper} sx={{ marginTop: 4 }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
