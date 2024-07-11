@@ -25,7 +25,7 @@ export const getAllProduct = async () =>{
 
 export const getAllSubmit = async ()=>{
   try{
-    const res=await axios.get("http://localhost:3000/users")
+    const res=await axios.get("http://localhost:3000/users",{})
     return res.data;
   }catch(error){
      alert(error); console.log(error)

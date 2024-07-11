@@ -2,7 +2,8 @@
     "products": [
       { "id": 1, "name": "Product 1", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 1", "price": 100 },
       { "id": 2, "name": "Product 2", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 2", "price": 150 },
-      { "id": 3, "name": "Product 3", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 3", "price": 200 }
+      { "id": 3, "name": "Product 3", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 3", "price": 200 },
+      { "id": 4, "name": "Product 3", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 3", "price": 200 }
     ],
     "users":[
       {"id":1,"name": "Quang" ,"email":"quangtv@gmail.com","pass":"Quang123","userName":"quangTV"}
