@@ -2,7 +2,6 @@ import {useState,useEffect} from 'react'
 import { Email, Products } from '../../type/Interface';
 import { getAllProduct, getAllSubmit } from '../../component/Axios/axios';
 import {CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container} from '@mui/material';
-import Sidebar from './type/Siber';
 
 const Admin = () => {
     const [users,getUsers] = useState<Email[]>([]);
