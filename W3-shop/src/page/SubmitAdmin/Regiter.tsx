@@ -1,0 +1,175 @@
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  CssBaseline,
+  FormControlLabel,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import axios from "axios";
+
+import { useForm, SubmitHandler } from "react-hook-form"
+import { useNavigate } from "react-router-dom";
+
+type RegisterFormParams = {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string
+};
+
+
+const Register = () => {
+  const navigate = useNavigate() ; 
+
+  let confirmPassword = ""
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<RegisterFormParams>()
+
+  confirmPassword = watch("confirmPassword", "");
+  
+
+  const onSubmit: SubmitHandler<RegisterFormParams> = async (data) => {
+    try {
+      await axios.post("http://localhost:3000/users", data);
+      alert("Register successful")
+      navigate("/login")
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  return (
+    <>
+      <Grid container component="main" justifyContent={"center"}>
+        <CssBaseline />
+        {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={1}
+          square
+          p={5}
+        >
+          <div>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Avatar></Avatar>
+            </Box>
+            <Typography component="h1" variant="h5" my={2} textAlign={"center"}>
+              Register
+            </Typography>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                autoFocus
+                {...register("username", {
+                  required: "Username is required",
+                })}
+                error={!!errors?.username?.message}
+                helperText={errors?.username?.message}
+                name="username"
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                label="Email"
+                type="email"
+                id="email"
+                autoComplete="current-email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "invalid email address",
+                  },
+                })}
+                error={!!errors?.email?.message}
+                helperText={errors?.email?.message}
+                name="email"
+
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password is min length 6 characters",
+                  },
+                })}
+                error={!!errors?.password?.message}
+                helperText={errors?.password?.message}
+
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                {...register("confirmPassword", {
+                  validate: value =>
+                    value == confirmPassword || "The passwords do not match"
+                })}
+                error={!!errors?.confirmPassword?.message}
+                helperText={errors?.confirmPassword?.message}
+
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Sign Up
+              </Button>
+              <Grid container>
+                <Grid item mt={5}>
+                  <Typography variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Grid>
+      </Grid>
+    </>
+  );
+};
+
+export default Register;

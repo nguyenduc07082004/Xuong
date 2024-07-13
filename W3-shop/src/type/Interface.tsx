@@ -8,8 +8,8 @@ export interface Products{
 
 export interface Email{
     id?:number|string;
-    name:string;
+    username:string;
     email:string;
-    pass:string;
-    userName:string;
+    password:string;
+    confirmPassword:string;
 }

@@ -55,10 +55,10 @@ const Admin = () => {
             <TableCell component="th" scope="row" align="center">
               {user.id}
             </TableCell>
-            <TableCell align="center">{user.name}</TableCell>
+            <TableCell align="center">{user.username}</TableCell>
             <TableCell align="center">{user.email}</TableCell>
-            <TableCell align="center">{user.pass}</TableCell>
-            <TableCell align="center">{user.userName}</TableCell>
+            <TableCell align="center">{user.password}</TableCell>
+            <TableCell align="center">{user.confirmPassword}</TableCell>
             <TableCell align="center"><button>Delete</button><button>Update</button></TableCell>
           </TableRow>
         ))}
