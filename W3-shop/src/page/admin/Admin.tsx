@@ -1,8 +1,7 @@
 import {useState,useEffect} from 'react'
 import { Email, Products } from '../../type/Interface';
 import { getAllProduct, getAllSubmit } from '../../component/Axios/axios';
-import {CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material';
-import Sidebar from './type/Siber';
+import {CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container} from '@mui/material';
 
 const Admin = () => {
     const [users,getUsers] = useState<Email[]>([]);
@@ -34,7 +33,8 @@ const Admin = () => {
     },([]));
     if (loading) return <CircularProgress />;
   return (
-    <div>
+
+    <Container>
     <h1>User</h1>
     <TableContainer component={Paper} sx={{ marginTop: 4 }}>
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -54,10 +54,10 @@ const Admin = () => {
             <TableCell component="th" scope="row" align="center">
               {user.id}
             </TableCell>
-            <TableCell align="center">{user.name}</TableCell>
+            <TableCell align="center">{user.username}</TableCell>
             <TableCell align="center">{user.email}</TableCell>
-            <TableCell align="center">{user.pass}</TableCell>
-            <TableCell align="center">{user.userName}</TableCell>
+            <TableCell align="center">{user.password}</TableCell>
+            <TableCell align="center">{user.confirmPassword}</TableCell>
             <TableCell align="center"><button>Delete</button><button>Update</button></TableCell>
           </TableRow>
         ))}
@@ -92,7 +92,7 @@ const Admin = () => {
         </TableBody>
       </Table>
     </TableContainer>
-    </div>
+    </Container>
   )
 }
 export default Admin;

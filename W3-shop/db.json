@@ -1,12 +1,75 @@
 {
-    "products": [
-      { "id": 1, "name": "Product 1", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 1", "price": 100 },
-      { "id": 2, "name": "Product 2", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 2", "price": 150 },
-      { "id": 3, "name": "Product 3", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 3", "price": 200 },
-      { "id": 4, "name": "Product 3", "imageUrl":"https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg", "description": "Description of Product 3", "price": 200 }
-    ],
-    "users":[
-      {"id":1,"name": "Quang" ,"email":"quangtv@gmail.com","pass":"Quang123","userName":"quangTV"}
-    ]
-  }
-  
+  "products": [
+    {
+      "id": "1",
+      "name": "Product 1",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "description": "Description of Product 1",
+      "price": 100
+    },
+    {
+      "id": "2",
+      "name": "Product 2",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "description": "Description of Product 2",
+      "price": 150
+    },
+    {
+      "id": "3",
+      "name": "Product 3",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "description": "Description of Product 3",
+      "price": 200
+    },
+    {
+      "id": "4",
+      "name": "Product 3",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "description": "Description of Product 3",
+      "price": 200
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "Quang",
+      "email": "quangtv@gmail.com",
+      "password": "Quang123",
+      "confirmPassword": "quangTV"
+    },
+    {
+      "id": "a9cb",
+      "username": "qunag",
+      "email": "quangtvph39380@fpt.edu.vn",
+      "password": "QUang123",
+      "confirmPassword": "Quang123"
+    },
+    {
+      "id": "7069",
+      "email": "quangtvph39380@fpt.edu.vn",
+      "password": "Quang123"
+    },
+    {
+      "id": "df8a",
+      "username": "duc",
+      "email": "ducnvph98239@fpt.edu.vn",
+      "password": "duc123456",
+      "confirmPassword": "duc123456"
+    },
+    {
+      "id": "c95f",
+      "email": "ducnvph98239@fpt.edu.vn",
+      "password": "duc123"
+    },
+    {
+      "id": "51dc",
+      "email": "quang@gmail.com",
+      "password": "Quang@123"
+    },
+    {
+      "id": "3a56",
+      "email": "quangtvph39380@fpt.edu.vn",
+      "password": "Quang123"
+    }
+  ]
+}
