@@ -24,7 +24,7 @@ export const getAllProduct = async () =>{
 
 
 
-
+// hiển thị user
 export const getAllSubmit = async ()=>{
   try{
     const res=await axios.get("http://localhost:3000/users",{})
@@ -33,6 +33,7 @@ export const getAllSubmit = async ()=>{
      alert(error); console.log(error)
   }
 };
+//Đăng ký
 export const getRegister:SubmitHandler<Email> = async (data)=>{
   try{
     await axios.post("http://localhost:3000/users",data)
@@ -40,6 +41,7 @@ export const getRegister:SubmitHandler<Email> = async (data)=>{
      alert(error); console.log(error)
   }
 };
+//Đăng nhập
 export const getLogin:SubmitHandler<Email> = async (data)=>{
   try{
     const res = await axios.post("http://localhost:3000/users", data);
