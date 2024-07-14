@@ -1,4 +1,7 @@
 import axios from "axios";
+import { SubmitHandler } from "react-hook-form";
+import { Email } from "../../type/Interface";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -24,4 +27,19 @@ export const getAllSubmit = async ()=>{
   }catch(error){
      alert(error); console.log(error)
   }
-}
+};
+export const getRegister:SubmitHandler<Email> = async (data)=>{
+  try{
+    await axios.post("http://localhost:3000/users",data)
+  }catch(error){
+     alert(error); console.log(error)
+  }
+};
+export const getLogin:SubmitHandler<Email> = async (data)=>{
+  try{
+    const res = await axios.post("http://localhost:3000/users", data);
+    localStorage.setItem('token',JSON.stringify(res.data.accessToken))
+  }catch(error){
+     alert(error); console.log(error)
+  }
+};

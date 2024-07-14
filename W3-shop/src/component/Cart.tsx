@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import { Products } from '../types/Interface'; // Import interface Products
+import { Products } from '../type/Interface';
 
 interface ProductProps {
   product: Products;

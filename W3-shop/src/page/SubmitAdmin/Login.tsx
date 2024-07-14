@@ -14,6 +14,7 @@ import {
   
   import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
+import { getLogin } from "../../component/Axios/axios";
   
   type RegisterFormParams = {
     email: string;
@@ -32,8 +33,7 @@ import { useNavigate } from "react-router-dom";
     } = useForm<RegisterFormParams>()
     const onSubmit: SubmitHandler<RegisterFormParams> = async (data) => {
       try {
-        const res = await axios.post("http://localhost:3000/users", data);
-        localStorage.setItem('token',JSON.stringify(res.data.accessToken))
+        getLogin;
         alert("Login successful")
         navigate('/')
       } catch (error) {
