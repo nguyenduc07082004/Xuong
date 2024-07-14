@@ -14,6 +14,7 @@ import axios from "axios";
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
+import { getRegister } from "../../component/Axios/axios";
 
 type RegisterFormParams = {
   username: string;
@@ -37,9 +38,9 @@ const Register = () => {
   confirmPassword = watch("confirmPassword", "");
   
 
-  const onSubmit: SubmitHandler<RegisterFormParams> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterFormParams> = async () => {
     try {
-      await axios.post("http://localhost:3000/users", data);
+      getRegister;
       alert("Register successful")
       navigate("/login")
     } catch (error) {
