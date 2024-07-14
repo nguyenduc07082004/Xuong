@@ -10,18 +10,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import axios from "axios";
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { getRegister } from "../../component/Axios/axios";
+import { Email } from "../../type/Interface";
 
-type RegisterFormParams = {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string
-};
+
 
 
 const Register = () => {
@@ -33,12 +28,12 @@ const Register = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RegisterFormParams>()
+  } = useForm<Email>()
 
   confirmPassword = watch("confirmPassword", "");
   
 
-  const onSubmit: SubmitHandler<RegisterFormParams> = async () => {
+  const onSubmit: SubmitHandler<Email> = async () => {
     try {
       getRegister;
       alert("Register successful")
