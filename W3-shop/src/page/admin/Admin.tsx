@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Email, Products } from '../../type/Interface';
-import { getAllProduct, getAllSubmit } from '../../component/Axios/axios';
+import { getAllProduct, getAllSubmit, deleteUser } from '../../component/Axios/axios';
 import {
   CircularProgress,
   Table,
@@ -87,6 +87,17 @@ const Admin = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const handleDeleteUser = async (userId: number|string) => {
+    const cofim= window.confirm('are you sure??')
+    try {
+      if(cofim){
+        await deleteUser(userId);
+        setUsers(users.filter((user) => user.id !== userId));
+      } 
+    } catch (error) {
+      console.error('Failed to delete user:', error);
+    }
+  };
 
   const drawer = (
     <div>
@@ -157,7 +168,7 @@ const Admin = () => {
                       <TableCell align="center">{user.password}</TableCell>
                       <TableCell align="center">{user.confirmPassword}</TableCell>
                       <TableCell align="center">
-                        <Button variant="contained" color="primary">Delete</Button>
+                        <Button variant="contained" color="primary" onClick={() => handleDeleteUser(user.id)}>Delete</Button>
                         <Button variant="contained" color="secondary">Update</Button>
                       </TableCell>
                     </TableRow>

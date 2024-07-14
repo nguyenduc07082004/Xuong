@@ -50,3 +50,12 @@ export const getLogin:SubmitHandler<Email> = async (data)=>{
      alert(error); console.log(error)
   }
 };
+
+export const deleteUser = async (usersId: number|string) => {
+  try {
+    const res= await axios.delete(`http://localhost:3000/users/${usersId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};

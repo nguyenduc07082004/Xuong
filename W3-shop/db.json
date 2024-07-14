@@ -70,47 +70,6 @@
       "email": "ducnvph98239@fpt.edu.vn",
       "password": "duc123456",
       "confirmPassword": "duc123456"
-    },
-    {
-      "id": "c95f",
-      "username": "Quang",
-      "email": "ducnvph98239@fpt.edu.vn",
-      "password": "duc123"
-    },
-    {
-      "id": "51dc",
-      "username": "Quang",
-      "email": "quang@gmail.com",
-      "password": "Quang@123"
-    },
-    {
-      "id": "3a56",
-      "username": "Quang",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "Quang123"
-    },
-    {
-      "id": "14d4",
-      "username": "Quang",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "150f",
-      "username": "Quang",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456"
-    },
-    {
-      "id": "29c0",
-      "email": "Ductv@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "c23a",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456"
     }
   ]
 }
