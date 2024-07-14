@@ -19,12 +19,7 @@ export const getAllProduct = async () =>{
 
 
 
-
-
-
-
-
-// hiển thị user
+//hiển thị User
 export const getAllSubmit = async ()=>{
   try{
     const res=await axios.get("http://localhost:3000/users",{})
