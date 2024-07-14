@@ -1,12 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, Paper, Typography, Button } from '@mui/material';
-<<<<<<< HEAD
 import { Products } from '../type/Interface'; // Thay đổi path tới types
-=======
-import { Products } from '../type/Interface';
 
->>>>>>> 33175e6fd265e02293da4308918fa8708baaf9c5
+
 
 interface ProductDetailProps {
   products: Products[]; // Thay đổi kiểu dữ liệu nếu cần
