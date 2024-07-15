@@ -1,48 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid, Paper, Typography, Button } from '@mui/material';
-import { Products } from '../type/Interface'; // Thay đổi path tới types
+import axios from 'axios';
+import { Products } from "../type/Interface";
+import { Container, Typography, Card, CardContent, CardMedia } from '@mui/material';
 
+const ProductDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
 
-
-interface ProductDetailProps {
-  products: Products[]; // Thay đổi kiểu dữ liệu nếu cần
-}
-
-const ProductDetail: React.FC<ProductDetailProps> = ({ products }) => {
-  const { productId } = useParams<{ productId: string }>(); // Lấy productId từ URL
-
-  // Tìm sản phẩm trong danh sách theo productId
-  const product = products.find((prod) => prod.id === productId);
+  useEffect(() => {
+    axios.get(`http://localhost:3001/products/${id}`)
+      .then(response => {
+        setProduct(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching product:', error);
+      });
+  }, [id]);
 
   if (!product) {
-    return <Typography variant="h4">Product not found</Typography>;
+    return <Typography>Loading...</Typography>;
   }
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12} md={6}>
-        <Paper elevation={3} sx={{ padding: 2 }}>
-          <img src={product.imageUrl} alt={product.name} style={{ width: '100%' }} />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Paper elevation={3} sx={{ padding: 2 }}>
-          <Typography variant="h4" gutterBottom>
+    <Container>
+      <Card>
+        <CardMedia
+          component="img"
+          height="300"
+          image={product.imageUrl}
+          alt={product.name}
+        />
+        <CardContent>
+          <Typography variant="h4" component="h1" gutterBottom>
             {product.name}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" color="text.secondary" gutterBottom>
             {product.description}
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h5" component="p">
             Price: ${product.price}
           </Typography>
-          <Button variant="contained" color="primary">
-            Add to Cart
-          </Button>
-        </Paper>
-      </Grid>
-    </Grid>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 
