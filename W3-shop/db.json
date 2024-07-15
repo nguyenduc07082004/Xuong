@@ -45,26 +45,32 @@
   ],
   "users": [
     {
-      "id": "3a56",
+      "id": "1",
       "username": "Quang",
       "email": "quangtvph39380@fpt.edu.vn",
-      "password": "Quang123"
+      "password": "Quang123",
+      "confirmPassword":"Quang123"
     },
     {
-      "id": "150f",
+      "id": "2",
       "username": "Quang",
       "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456"
+      "password": "123456",
+      "confirmPassword":"123456"
     },
     {
-      "id": "29c0",
+      "id": "3",
+      "username": "Quang",
       "email": "Ductv@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "confirmPassword":"123456"
     },
     {
-      "id": "c23a",
+      "id": "4",
+      "username": "Quang",
       "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456"
+      "password": "123456",
+      "confirmPassword":"123456"
     }
   ]
 }
