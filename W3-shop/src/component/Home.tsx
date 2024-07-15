@@ -28,7 +28,7 @@ const Home = () => {
     if (loading) return <CircularProgress />;
   return (
     <>
-    
+    <Header />
     <Banner/>
        <Grid container spacing={3}>
       {products.map(product => (
@@ -37,7 +37,7 @@ const Home = () => {
         </Grid>
       ))}
     </Grid>
-    
+    <Footer />
     </>
  
 );

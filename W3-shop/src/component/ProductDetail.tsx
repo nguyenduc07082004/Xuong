@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Products } from "../type/Interface";
 import { Container, Typography, Card, CardContent, CardMedia } from '@mui/material';
+import Header from './Header';
+import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,6 +26,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <Container>
+      <Header />
       <Card>
         <CardMedia
           component="img"
@@ -43,6 +46,7 @@ const ProductDetail: React.FC = () => {
           </Typography>
         </CardContent>
       </Card>
+      <Footer />
     </Container>
   );
 };
