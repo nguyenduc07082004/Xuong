@@ -177,6 +177,8 @@ const Admin = () => {
                     <TableCell align="center">ID</TableCell>
                     <TableCell align="center">Name</TableCell>
                     <TableCell align="center">Email</TableCell>
+                    <TableCell align="center">Password</TableCell>
+                    <TableCell align="center">Confirm Password</TableCell>
                     <TableCell align="center">Action</TableCell>
                   </TableRow>
                 </TableHead>
@@ -188,6 +190,8 @@ const Admin = () => {
                       </TableCell>
                       <TableCell align="center">{user.username}</TableCell>
                       <TableCell align="center">{user.email}</TableCell>
+                      <TableCell align="center">{user.password}</TableCell>
+                      <TableCell align="center">{user.confirmPassword}</TableCell>
                       <TableCell align="center">
                         <Button variant="contained" color="primary" onClick={() => handleDeleteUser(user.id)}>Delete</Button>
                         <Button variant="contained" color="secondary">Update</Button>
