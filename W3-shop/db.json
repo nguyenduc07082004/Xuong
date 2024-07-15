@@ -45,25 +45,6 @@
   ],
   "users": [
     {
-      "id": "df8a",
-      "username": "duc",
-      "email": "ducnvph98239@fpt.edu.vn",
-      "password": "duc123456",
-      "confirmPassword": "duc123456"
-    },
-    {
-      "id": "c95f",
-      "username": "Quang",
-      "email": "ducnvph98239@fpt.edu.vn",
-      "password": "duc123"
-    },
-    {
-      "id": "51dc",
-      "username": "Quang",
-      "email": "quang@gmail.com",
-      "password": "Quang@123"
-    },
-    {
       "id": "3a56",
       "username": "Quang",
       "email": "quangtvph39380@fpt.edu.vn",
