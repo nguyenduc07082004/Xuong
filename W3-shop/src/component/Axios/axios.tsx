@@ -19,7 +19,7 @@ export const getAllProduct = async () =>{
 
 
 
-
+//hiển thị User
 export const getAllSubmit = async ()=>{
   try{
     const res=await axios.get("http://localhost:3000/users",{})
@@ -28,6 +28,7 @@ export const getAllSubmit = async ()=>{
      alert(error); console.log(error)
   }
 };
+//Đăng ký
 export const getRegister:SubmitHandler<Email> = async (data)=>{
   try{
     await axios.post("http://localhost:3000/users",data)
@@ -35,11 +36,21 @@ export const getRegister:SubmitHandler<Email> = async (data)=>{
      alert(error); console.log(error)
   }
 };
+//Đăng nhập
 export const getLogin:SubmitHandler<Email> = async (data)=>{
   try{
     const res = await axios.post("http://localhost:3000/users", data);
     localStorage.setItem('token',JSON.stringify(res.data.accessToken))
   }catch(error){
      alert(error); console.log(error)
+  }
+};
+
+export const deleteUser = async (usersId: number|string) => {
+  try {
+    const res= await axios.delete(`http://localhost:3000/users/${usersId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
   }
 };

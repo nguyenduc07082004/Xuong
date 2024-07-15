@@ -15,6 +15,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { getRegister } from "../../component/Axios/axios";
 import { Email } from "../../type/Interface";
+import { Link } from "react-router-dom";
 
 
 
@@ -156,7 +157,8 @@ const Register = () => {
               <Grid container>
                 <Grid item mt={5}>
                   <Typography variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Don't have an account?"}
+                    <Link to="/login">Login</Link>
                   </Typography>
                 </Grid>
               </Grid>

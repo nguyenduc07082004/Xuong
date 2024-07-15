@@ -10,7 +10,7 @@ import {
     TextField,
     Typography,
   } from "@mui/material";
-  import axios from "axios";
+  import { Link } from "react-router-dom";
   
   import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
@@ -121,7 +121,8 @@ import { getLogin } from "../../component/Axios/axios";
                 <Grid container>
                   <Grid item mt={5}>
                     <Typography variant="body2">
-                      {"Don't have an account? Sign Up"}
+                      {"Don't have an account?"}
+                      <Link to="/register">Sign Up</Link>
                     </Typography>
                   </Grid>
                 </Grid>
