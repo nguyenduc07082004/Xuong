@@ -1,10 +1,8 @@
 import {useEffect,useState}from 'react'
 import { Products } from '../type/Interface'
 import { getAllProduct } from './Axios/axios';
-import { Grid, CircularProgress, Tygrgraphy } from '@mui/material';
+import { Grid, CircularProgress} from '@mui/material';
 import Product from './Cart';
-import Header from './Header';
-import Footer from './Footer';
 import Banner from './Banner';
 
 

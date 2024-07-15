@@ -8,10 +8,10 @@ import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<Products | null>(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/products/${id}`)
+    axios.get(`http://localhost:3000/products/${id}`)
       .then(response => {
         setProduct(response.data);
       })
