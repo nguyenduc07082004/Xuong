@@ -4,6 +4,8 @@ import { getAllProduct } from './Axios/axios';
 import { Grid, CircularProgress} from '@mui/material';
 import Product from './Cart';
 import Banner from './Banner';
+import Header from './Header';
+import Footer from './Footer';
 
 
 
@@ -26,7 +28,7 @@ const Home = () => {
     if (loading) return <CircularProgress />;
   return (
     <>
-    <Header />
+    <Header/>
     <Banner/>
        <Grid container spacing={3}>
       {products.map(product => (
@@ -35,7 +37,7 @@ const Home = () => {
         </Grid>
       ))}
     </Grid>
-    <Footer />
+    <Footer/>
     </>
  
 );
