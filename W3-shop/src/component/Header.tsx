@@ -67,7 +67,7 @@ const Header = () => {
           <StyledButton href="/contact">Liên hệ</StyledButton>
           <StyledButton href="/products">Sản phẩm</StyledButton>
           <StyledButton href="/reviews">Đánh giá</StyledButton>
-          <StyledButton href="/comments">Bình luận</StyledButton>
+          <StyledButton href="/admin">Admin</StyledButton>
         </Box>
         <Search>
           <StyledInputBase
