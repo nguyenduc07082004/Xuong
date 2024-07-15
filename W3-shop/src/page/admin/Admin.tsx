@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Container,
   Grid,
   Button,
   Typography,
@@ -106,31 +105,31 @@ const Admin = () => {
       <List>
         <ListItem button>
         <ListItemText >
-        <a href=""><Link to='/'>Home</Link></a><hr/>
+        <Link to='/'>Home</Link><hr/>
         </ListItemText>
         </ListItem>
 
         <ListItem button>
         <ListItemText>
-          <a href=""><Link to='/'> Add Product</Link></a><hr/>
+          <Link to='/'> Add Product</Link><hr/>
           </ListItemText>
         </ListItem>
 
         <ListItem button>
         <ListItemText>
-          <a href=""><Link to='/'> Add Product</Link></a><hr/>
+          <Link to='/'> Add Product</Link><hr/>
           </ListItemText>
         </ListItem>
         
         <ListItem button>
           <ListItemText>
-        <a href=""><Link to='/'>Users</Link></a><hr/>
+        <Link to='/'>Users</Link><hr/>
         </ListItemText>
         </ListItem>
 
         <ListItem button>
         <ListItemText>
-        <a href=""><Link to='/'>Settings</Link></a><hr/>
+        <Link to='/'>Settings</Link><hr/>
         </ListItemText>
         </ListItem>
 

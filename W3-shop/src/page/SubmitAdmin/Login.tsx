@@ -11,7 +11,6 @@ import {
     Typography,
   } from "@mui/material";
   import { Link } from "react-router-dom";
-  
   import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { getLogin } from "../../component/Axios/axios";
@@ -28,10 +27,9 @@ import { getLogin } from "../../component/Axios/axios";
     const {
       register,
       handleSubmit,
-      watch,
       formState: { errors },
     } = useForm<RegisterFormParams>()
-    const onSubmit: SubmitHandler<RegisterFormParams> = async (data) => {
+    const onSubmit: SubmitHandler<RegisterFormParams> = async () => {
       try {
         getLogin;
         alert("Login successful")
