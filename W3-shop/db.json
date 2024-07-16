@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Product 1",
-      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "name": "Product 2",
       "description": "Description of Product 1",
-      "price": 100
+      "price": "1000",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "id": "1"
     },
     {
       "id": "2",

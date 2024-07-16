@@ -197,7 +197,7 @@ const Admin = () => {
                       <TableCell align="center">${product.price}</TableCell>
                       <TableCell align="center">
                         <Button variant="contained" color="primary"  onClick={() => handleDeleteProduct(product.id)}>Delete</Button>
-                        <Button variant="contained" color="secondary">Update</Button>
+                        <Button variant="contained" color="secondary" ><Link to={`/product/edit/${product.id}`}>Edit</Link></Button>
                       </TableCell>
                     </TableRow>
                   ))}
