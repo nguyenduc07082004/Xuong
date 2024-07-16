@@ -142,7 +142,7 @@ const Admin = () => {
   );
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
@@ -170,8 +170,50 @@ const Admin = () => {
       >
         {drawer}
       </Drawer>
-      <main style={{ flexGrow: 1, padding: '80px 24px 24px 24px' }}>
-        <Grid container spacing={2}>
+      <main>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4" gutterBottom>Products</Typography>
+            <TableContainer component={Paper} sx={{ marginTop: 4 }}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">ID</TableCell>
+                    <TableCell align="center">Name</TableCell>
+                    <TableCell align="center">imager</TableCell>
+                    <TableCell align="center">Description</TableCell>
+                    <TableCell align="center">Price</TableCell>
+                    <TableCell align="center">Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {products.slice(productPage * productRowsPerPage, productPage * productRowsPerPage + productRowsPerPage).map((product) => (
+                    <TableRow key={product.id}>
+                      <TableCell component="th" scope="row" align="center">
+                        {product.id}
+                      </TableCell>
+                      <TableCell align="center">{product.name}</TableCell>
+                      <TableCell align="center"><img src={product.imageUrl} alt={product.name} width="10%"/></TableCell>
+                      <TableCell align="center">{product.description}</TableCell>
+                      <TableCell align="center">${product.price}</TableCell>
+                      <TableCell align="center">
+                        <Button variant="contained" color="primary"  onClick={() => handleDeleteProduct(product.id)}>Delete</Button>
+                        <Button variant="contained" color="secondary">Update</Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={products.length}
+                rowsPerPage={productRowsPerPage}
+                page={productPage}
+                onPageChange={handleProductChangePage}
+                onRowsPerPageChange={handleProductChangeRowsPerPage}
+              />
+            </TableContainer>
+          </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="h4" gutterBottom>User</Typography>
             <TableContainer component={Paper} sx={{ marginTop: 4 }}>
@@ -215,50 +257,6 @@ const Admin = () => {
               />
             </TableContainer>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4" gutterBottom>Products</Typography>
-            <TableContainer component={Paper} sx={{ marginTop: 4 }}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">ID</TableCell>
-                    <TableCell align="center">Name</TableCell>
-                    <TableCell align="center">imager</TableCell>
-                    <TableCell align="center">Description</TableCell>
-                    <TableCell align="center">Price</TableCell>
-                    <TableCell align="center">Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {products.slice(productPage * productRowsPerPage, productPage * productRowsPerPage + productRowsPerPage).map((product) => (
-                    <TableRow key={product.id}>
-                      <TableCell component="th" scope="row" align="center">
-                        {product.id}
-                      </TableCell>
-                      <TableCell align="center">{product.name}</TableCell>
-                      <TableCell align="center"><img src={product.imageUrl} alt={product.name} width="30%"/></TableCell>
-                      <TableCell align="center">{product.description}</TableCell>
-                      <TableCell align="center">${product.price}</TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="primary"  onClick={() => handleDeleteProduct(product.id)}>Delete</Button>
-                        <Button variant="contained" color="secondary">Update</Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={products.length}
-                rowsPerPage={productRowsPerPage}
-                page={productPage}
-                onPageChange={handleProductChangePage}
-                onRowsPerPageChange={handleProductChangeRowsPerPage}
-              />
-            </TableContainer>
-          </Grid>
-        </Grid>
       </main>
     </div>
   );
