@@ -1,7 +1,6 @@
 import axios from "axios";
 import { SubmitHandler } from "react-hook-form";
 import { Email } from "../../type/Interface";
-import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,6 +12,15 @@ export const getAllProduct = async () =>{
         console.log(error)
       };
 }
+
+export const deleteProduct = async (productId: number|string) => {
+  try {
+    const res= await axios.delete(`http://localhost:3000/products/${productId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 
 
@@ -45,7 +53,7 @@ export const getLogin:SubmitHandler<Email> = async (data)=>{
      alert(error); console.log(error)
   }
 };
-
+//delete
 export const deleteUser = async (usersId: number|string) => {
   try {
     const res= await axios.delete(`http://localhost:3000/users/${usersId}`);

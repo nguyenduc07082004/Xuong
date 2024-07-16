@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Email, Products } from '../../type/Interface';
-import { getAllProduct, getAllSubmit, deleteUser } from '../../component/Axios/axios';
+import { getAllProduct, getAllSubmit, deleteUser, deleteProduct } from '../../component/Axios/axios';
 import {
   CircularProgress,
   Table,
@@ -93,6 +93,17 @@ const Admin = () => {
       if(cofim){
         await deleteUser(userId);
         setUsers(users.filter((user) => user.id !== userId));
+      } 
+    } catch (error) {
+      console.error('Failed to delete user:', error);
+    }
+  };
+  const handleDeleteProduct = async (productId: number|string) => {
+    const cofim= window.confirm('are you sure??')
+    try {
+      if(cofim){
+        await deleteProduct(productId);
+        setProducts(products.filter((product) => product.id !== productId));
       } 
     } catch (error) {
       console.error('Failed to delete user:', error);
@@ -229,7 +240,7 @@ const Admin = () => {
                       <TableCell align="center">{product.description}</TableCell>
                       <TableCell align="center">${product.price}</TableCell>
                       <TableCell align="center">
-                        <Button variant="contained" color="primary">Delete</Button>
+                        <Button variant="contained" color="primary"  onClick={() => handleDeleteProduct(product.id)}>Delete</Button>
                         <Button variant="contained" color="secondary">Update</Button>
                       </TableCell>
                     </TableRow>
