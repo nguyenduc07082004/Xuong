@@ -111,16 +111,9 @@ const Admin = () => {
 
         <ListItem button>
         <ListItemText>
-          <Link to='/'> Add Product</Link><hr/>
+          <Link to='/product/add'> Add Product</Link><hr/>
           </ListItemText>
-        </ListItem>
-
-        <ListItem button>
-        <ListItemText>
-          <Link to='/'> Add Product</Link><hr/>
-          </ListItemText>
-        </ListItem>
-        
+        </ListItem>  
         <ListItem button>
           <ListItemText>
         <Link to='/'>Users</Link><hr/>
@@ -129,7 +122,7 @@ const Admin = () => {
 
         <ListItem button>
         <ListItemText>
-        <Link to='/'>Settings</Link><hr/>
+        <Link to='/settings'>Settings</Link><hr/>
         </ListItemText>
         </ListItem>
 

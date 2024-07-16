@@ -29,9 +29,9 @@ const Login = () => {
     formState: { errors },
   } = useForm<RegisterFormParams>();
 
-  const onSubmit: SubmitHandler<RegisterFormParams> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterFormParams> = async () => {
     try {
-      await getLogin(data); // Gọi hàm getLogin với dữ liệu từ form
+      await getLogin; // Gọi hàm getLogin với dữ liệu từ form
       alert("Đăng nhập thành công");
       navigate('/');
     } catch (error) {
