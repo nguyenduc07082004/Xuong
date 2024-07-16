@@ -72,9 +72,9 @@ const Header = () => {
             />
           </Search>
           <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: '16px' }}>
-            <StyledButton>Đăng nhập</StyledButton>
+            <StyledButton href='/login'>Đăng nhập</StyledButton>
             <Typography variant="body2" sx={{ marginX: '8px' }}>|</Typography>
-            <StyledButton><Link to = "/register">Đăng ký </Link></StyledButton>
+            <StyledButton href='/register'>Đăng ký </StyledButton>
           </Box>
         </Toolbar>
       </AppBar>

@@ -30,6 +30,7 @@ const Home = () => {
     <>
     <Header/>
     <Banner/>
+    <p>Sản phẩm</p>
        <Grid container spacing={3}>
       {products.map(product => (
         <Grid item key={product.id} xs={12} sm={6} md={4}>
