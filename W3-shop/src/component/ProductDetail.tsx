@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Products } from "../type/Interface";
-import { Container, Typography, Card, CardContent, CardMedia, Box, Grid, Button, Rating } from '@mui/material';
+import { Container, Typography, Card, CardMedia, Box, Grid, Button} from '@mui/material';
 import Header from './Header';
 import Footer from "./Footer";
 

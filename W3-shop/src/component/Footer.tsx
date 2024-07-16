@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
     <AppBar position="static" color="primary">
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography variant="body1" component="div">
-          <Typography variant="subtitle1" color="inherit" sx={{ fontWeight: 'bold' }}>
-          W3
+        <Typography variant="h6" component="div">
+            W3-Shop
           </Typography>
           <Typography variant="body2" color="inherit">
             Address: 123 Example St, City, Country

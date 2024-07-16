@@ -41,6 +41,27 @@
       "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
       "description": "Description of Product 3",
       "price": 200
+    },
+    {
+      "id": "a004",
+      "name": "Áo Liverpool",
+      "description": "phòng 410",
+      "price": "1002",
+      "imageUrl": "fffff"
+    },
+    {
+      "id": "141b",
+      "name": "Áo Liverpool",
+      "description": "phòng 410",
+      "price": "1234",
+      "imageUrl": "fffff"
+    },
+    {
+      "id": "ee8b",
+      "name": "Áo Liverpool",
+      "description": "phòng 410",
+      "price": "9999",
+      "imageUrl": "r"
     }
   ],
   "users": [
@@ -66,16 +87,23 @@
       "confirmPassword": "123456"
     },
     {
-      "id": "4",
-      "username": "Quang",
+      "id": "b108",
+      "username": "quang",
       "email": "quangtvph39380@fpt.edu.vn",
       "password": "123456",
       "confirmPassword": "123456"
     },
     {
-      "id": "b108",
-      "username": "quang",
-      "email": "quangtvph39380@fpt.edu.vn",
+      "id": "aa53",
+      "username": "emrachsanchzg@outlook.com.au",
+      "email": "ducnvph33354@fpt.edu.vn",
+      "password": "123456",
+      "confirmPassword": "123456"
+    },
+    {
+      "id": "eda9",
+      "username": "ducnvph33354",
+      "email": "ducnvph33354@fpt.edu.vn",
       "password": "123456",
       "confirmPassword": "123456"
     }
