@@ -15,7 +15,6 @@ const Login = () => {
     }
 
     try {
-      // Gửi yêu cầu GET để kiểm tra thông tin đăng nhập
       const response = await axios.get(`http://localhost:3000/users?username=${username}&password=${password}`);
       
       if (response.data.length === 0) {

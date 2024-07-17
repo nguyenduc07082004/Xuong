@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Products } from '../../type/Interface';
-import { getAllProduct, deleteProduct } from '../../component/Axios/axios';
+import { useState, useEffect } from "react";
+import { Products } from "../../type/Interface";
+import { getAllProduct, deleteProduct } from "../../component/Axios/axios";
 import {
   CircularProgress,
   Table,
@@ -23,17 +23,17 @@ import {
   IconButton,
   CssBaseline,
   Box,
-  ListItemIcon
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import AddIcon from '@mui/icons-material/Add';
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'react-router-dom';
+  ListItemIcon,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import AddIcon from "@mui/icons-material/Add";
+import PersonIcon from "@mui/icons-material/Person";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -66,7 +66,9 @@ const Admin = () => {
     setUserPage(newPage);
   };
 
-  const handleUserChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUserChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setUserRowsPerPage(parseInt(event.target.value, 10));
     setUserPage(0);
   };
@@ -75,7 +77,9 @@ const Admin = () => {
     setProductPage(newPage);
   };
 
-  const handleProductChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleProductChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setProductRowsPerPage(parseInt(event.target.value, 10));
     setProductPage(0);
   };
@@ -85,14 +89,14 @@ const Admin = () => {
   };
 
   const handleDeleteProduct = async (productId: number | string) => {
-    const confirm = window.confirm('Bạn có chắc chắn muốn xóa?');
+    const confirm = window.confirm("Bạn có chắc chắn muốn xóa?");
     try {
       if (confirm) {
         await deleteProduct(productId);
         setProducts(products.filter((product) => product.id !== productId));
       }
     } catch (error) {
-      console.error('Lỗi khi xóa sản phẩm:', error);
+      console.error("Lỗi khi xóa sản phẩm:", error);
     }
   };
 
@@ -100,7 +104,7 @@ const Admin = () => {
     <div>
       <Toolbar />
       <List>
-        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
               <HomeIcon />
@@ -108,7 +112,10 @@ const Admin = () => {
             <ListItemText primary="Home" />
           </ListItem>
         </Link>
-        <Link to='/product/add' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link
+          to="/product/add"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <ListItem button>
             <ListItemIcon>
               <AddIcon />
@@ -116,7 +123,7 @@ const Admin = () => {
             <ListItemText primary="Add Product" />
           </ListItem>
         </Link>
-        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
               <PersonIcon />
@@ -124,7 +131,10 @@ const Admin = () => {
             <ListItemText primary="Users" />
           </ListItem>
         </Link>
-        <Link to='/settings' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link
+          to="/settings"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <ListItem button>
             <ListItemIcon>
               <SettingsIcon />
@@ -132,7 +142,7 @@ const Admin = () => {
             <ListItemText primary="Settings" />
           </ListItem>
         </Link>
-        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
               <LogoutIcon />
@@ -145,16 +155,19 @@ const Admin = () => {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <AppBar
+        position="fixed"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: 'none' } }}
+            sx={{ mr: 2, display: { md: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -168,20 +181,28 @@ const Admin = () => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          [`& .MuiDrawer-paper`]: {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
         }}
       >
         {drawer}
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
       >
         <Toolbar />
         <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12}>
-            <Typography variant="h4" gutterBottom>Products</Typography>
-            <TableContainer component={Paper} sx={{ marginTop: 4, overflowX: 'auto' }}>
+            <Typography variant="h4" gutterBottom>
+              Products
+            </Typography>
+            <TableContainer
+              component={Paper}
+              sx={{ marginTop: 4, overflowX: "auto" }}
+            >
               <Table sx={{ minWidth: 750 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
@@ -194,29 +215,52 @@ const Admin = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {products.slice(productPage * productRowsPerPage, productPage * productRowsPerPage + productRowsPerPage).map((product) => (
-                    <TableRow key={product.id}>
-                      <TableCell component="th" scope="row" align="center">
-                        {product.id}
-                      </TableCell>
-                      <TableCell align="center">{product.name}</TableCell>
-                      <TableCell align="center">
-                        <img src={product.imageUrl} alt={product.name} width="100" height="100" />
-                      </TableCell>
-                      <TableCell align="center">{product.description}</TableCell>
-                      <TableCell align="center">${product.price}</TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="primary" onClick={() => handleDeleteProduct(product.id!)}>
-                          <DeleteIcon />
-                        </Button>
-                        <Button variant="contained" color="secondary" sx={{ marginLeft: 1 }}>
-                          <Link to={`/product/edit/${product.id}`} style={{ color: '#FFF', textDecoration: 'none' }}>
-                            <EditIcon />
-                          </Link>
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {products
+                    .slice(
+                      productPage * productRowsPerPage,
+                      productPage * productRowsPerPage + productRowsPerPage
+                    )
+                    .map((product) => (
+                      <TableRow key={product.id}>
+                        <TableCell component="th" scope="row" align="center">
+                          {product.id}
+                        </TableCell>
+                        <TableCell align="center">{product.name}</TableCell>
+                        <TableCell align="center">
+                          <img
+                            src={product.imageUrl}
+                            alt={product.name}
+                            width="100"
+                            height="100"
+                          />
+                        </TableCell>
+                        <TableCell align="center">
+                          {product.description}
+                        </TableCell>
+                        <TableCell align="center">${product.price}</TableCell>
+                        <TableCell align="center">
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => handleDeleteProduct(product.id!)}
+                          >
+                            <DeleteIcon />
+                          </Button>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            sx={{ marginLeft: 1 }}
+                          >
+                            <Link
+                              to={`/product/edit/${product.id}`}
+                              style={{ color: "#FFF", textDecoration: "none" }}
+                            >
+                              <EditIcon />
+                            </Link>
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
               <TablePagination

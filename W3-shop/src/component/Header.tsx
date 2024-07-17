@@ -1,43 +1,43 @@
-import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import InputBase from "@mui/material/InputBase";
+import { styled, alpha } from "@mui/material/styles";
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
+  "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
+  color: "inherit",
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  color: 'inherit',
-  '&:hover': {
-    color: 'white',
+  color: "inherit",
+  "&:hover": {
+    color: "white",
     backgroundColor: theme.palette.primary.dark,
   },
 }));
@@ -46,19 +46,29 @@ const Header = ({ user }: { user: { username: string } | null }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed"> {/* Đặt position thành "fixed" để giữ header ở trên cùng */}
+      <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            W3-Shop
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              fontStyle: "italic",
+              textShadow:
+                "1px 1px 0px gold, -1px -1px 0px gold, 1px -1px 0px gold, -1px 1px 0px gold", // Tạo viền chữ màu vàng sáng
+            }}
+          >
+            <h3>W3-Shop</h3>
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <StyledButton href="/">Trang chủ</StyledButton>
             <StyledButton href="/about">Giới thiệu</StyledButton>
             <StyledButton href="/contact">Liên hệ</StyledButton>
@@ -67,22 +77,42 @@ const Header = ({ user }: { user: { username: string } | null }) => {
             <StyledButton href="/comments">Bình luận</StyledButton>
           </Box>
           <Search>
-            <StyledInputBase placeholder="Tìm kiếm..." inputProps={{ 'aria-label': 'search' }} />
+            <StyledInputBase
+              placeholder="Tìm kiếm..."
+              inputProps={{ "aria-label": "search" }}
+            />
           </Search>
-          <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: '16px' }}>
+          <Box
+            sx={{ display: "flex", alignItems: "center", marginLeft: "16px" }}
+          >
             {user ? (
               <>
-                <Typography variant="body1" sx={{ marginRight: '8px', display: { xs: 'none', md: 'block' } }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    marginRight: "8px",
+                    display: { xs: "none", md: "block" },
+                  }}
+                >
                   Xin chào, {user.username}
                 </Typography>
-                <Button variant="outlined" color="inherit" onClick={handleLogout}>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  onClick={handleLogout}
+                >
                   Đăng xuất
                 </Button>
               </>
             ) : (
               <>
                 <StyledButton href="/login">Đăng nhập</StyledButton>
-                <Typography variant="body2" sx={{ marginX: '8px', display: { xs: 'none', md: 'block' } }}>|</Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ marginX: "8px", display: { xs: "none", md: "block" } }}
+                >
+                  |
+                </Typography>
                 <StyledButton href="/register">Đăng ký</StyledButton>
               </>
             )}
