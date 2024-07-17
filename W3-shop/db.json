@@ -66,46 +66,37 @@
   ],
   "users": [
     {
-      "id": "1",
+      "id": "c9d7",
       "username": "Quang",
-      "email": "quangtvph39380@fpt.edu.vn",
+      "email": "quang@gmai.com",
       "password": "Quang123",
-      "confirmPassword": "Quang123"
+      "token": "4baby6t712u"
     },
     {
-      "id": "2",
-      "username": "Quang",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "id": "255",
+      "username": "Quang123",
+      "email": "quang123@gmail.com",
+      "password": "Quang123",
+      "token": "4kuurzzgvie"
     },
     {
-      "id": "3",
-      "username": "Quang",
-      "email": "Ductv@gmail.com",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "id": 703,
+      "username": "quang2308",
+      "email": "quangfpt@gmail.com",
+      "password": "Quang2308",
+      "token": "b6pcgjnenk6"
+    }
+  ],
+  "login": [
+    {
+      "id": "58c7",
+      "email": "quang@gmail.com",
+      "password": "Quang123"
     },
     {
-      "id": "b108",
-      "username": "quang",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "aa53",
-      "username": "emrachsanchzg@outlook.com.au",
-      "email": "ducnvph33354@fpt.edu.vn",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "eda9",
-      "username": "ducnvph33354",
-      "email": "ducnvph33354@fpt.edu.vn",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "id": "a653",
+      "email": "quang@gmail.com",
+      "password": "Quang123"
     }
   ]
 }

@@ -1,6 +1,5 @@
 import axios from "axios";
-import { SubmitHandler } from "react-hook-form";
-import { Email } from "../../type/Interface";
+
 
 
 
@@ -22,43 +21,12 @@ export const deleteProduct = async (productId: number|string) => {
   }
 };
 
-
-
-
-
-
-//hiển thị User
-export const getAllSubmit = async ()=>{
-  try{
-    const res=await axios.get("http://localhost:3000/users",{})
-    return res.data;
-  }catch(error){
-     alert(error); console.log(error)
-  }
-};
-//Đăng ký
-export const getRegister:SubmitHandler<Email> = async (data)=>{
-  try{
-    await axios.post("http://localhost:3000/users",data)
-  }catch(error){
-     alert(error); console.log(error)
-  }
-};
-//Đăng nhập
-export const getLogin:SubmitHandler<Email> = async (data)=>{
-  try{
-    const res = await axios.post("http://localhost:3000/users", data);
-    localStorage.setItem('token',JSON.stringify(res.data.accessToken))
-  }catch(error){
-     alert(error); console.log(error)
-  }
-};
-//delete
-export const deleteUser = async (usersId: number|string) => {
+export const getLogin = async (data: { email: string; password: string }) => {
   try {
-    const res= await axios.delete(`http://localhost:3000/users/${usersId}`);
-    return res.data;
+    const response = await axios.post(`http://localhost:3000/users`, data);
+    return response.data; // Giả sử response.data chứa token và thông tin người dùng
   } catch (error) {
-    throw error;
+   alert('Đăng nhập thất bại');console.log(error)
   }
 };
+
