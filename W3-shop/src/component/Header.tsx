@@ -53,7 +53,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed"> {/* Đặt position thành "fixed" để giữ header ở trên cùng */}
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             W3-Shop
