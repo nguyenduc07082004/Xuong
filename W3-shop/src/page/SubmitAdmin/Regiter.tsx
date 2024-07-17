@@ -1,135 +1,122 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Checkbox,
-  CssBaseline,
-  FormControlLabel,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { getRegister } from "../../component/Axios/axios";
-import { Email } from "../../type/Interface";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import { TextField, Button, Typography, Box, Grid, Paper } from '@mui/material';
+import { User } from '../../type/Interface';
 
-const Register = () => {
+const Register: React.FC = () => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Email>();
+  const handleRegister = async () => {
+    if (!username || !email || !password || !confirmPassword) {
+      alert('Không được để trống bất kỳ trường nào!');
+      return;
+    }
 
-  const password = watch("password", "");
+    if (password !== confirmPassword) {
+      alert('Nhập lại mật khẩu không đúng');
+      return;
+    }
 
-  const onSubmit: SubmitHandler<Email> = async (data) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Email không hợp lệ');
+      return;
+    }
+
+    const passwordRegex = /(?=.*[A-Z])|(?=.*\d)|(?=.*[!@#$%^&*])/;
+    if (!passwordRegex.test(password)) {
+      alert('Mật khẩu phải có ít nhất một ký tự viết hoa, số hoặc ký tự đặc biệt');
+      return;
+    }
+
     try {
-      await getRegister(data); // Giả sử getRegister là một hàm nhận dữ liệu đăng ký
-      alert("Đăng ký thành công");
-      navigate("/login");
+      const newUser: User = {
+        id: Math.floor(Math.random() * 1000), // Dummy ID generation for demo purpose
+        username,
+        email,
+        password,
+        token: generateToken(),
+      };
+
+      // Send POST request to register user
+      const response = await axios.post('http://localhost:3000/users', newUser);
+      
+      if (response.status === 201) {
+        alert('Đăng ký thành công!');
+        navigate('/'); // Redirect to home page
+      }
     } catch (error) {
-      alert(error);
+      alert('Lỗi khi đăng ký người dùng');
+      console.error('Lỗi khi đăng ký người dùng:', error);
     }
   };
 
+  const generateToken = () => {
+    return Math.random().toString(36).substr(2); // Simple token generation for demonstration
+  };
+
   return (
-    <Grid container component="main" justifyContent="center">
-      <CssBaseline />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={1} square p={5}>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Avatar />
-        </Box>
-        <Typography component="h1" variant="h5" my={2} textAlign="center">
-          Đăng ký
-        </Typography>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Tên đăng nhập"
-            autoFocus
-            {...register("username", { required: "Tên đăng nhập là bắt buộc" })}
-            error={!!errors?.username?.message}
-            helperText={errors?.username?.message}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Email"
-            type="email"
-            id="email"
-            autoComplete="current-email"
-            {...register("email", {
-              required: "Email là bắt buộc",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Địa chỉ email không hợp lệ",
-              },
-            })}
-            error={!!errors?.email?.message}
-            helperText={errors?.email?.message}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Mật khẩu"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            {...register("password", {
-              required: "Mật khẩu là bắt buộc",
-              minLength: {
-                value: 6,
-                message: "Mật khẩu phải có ít nhất 6 ký tự",
-              },
-            })}
-            error={!!errors?.password?.message}
-            helperText={errors?.password?.message}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Xác nhận mật khẩu"
-            type="password"
-            id="confirmPassword"
-            autoComplete="current-password"
-            {...register("confirmPassword", {
-              validate: (value) => value === password || "Mật khẩu không khớp",
-            })}
-            error={!!errors?.confirmPassword?.message}
-            helperText={errors?.confirmPassword?.message}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Nhớ tôi"
-          />
-          <Button type="submit" fullWidth variant="contained" color="primary">
+    <Grid justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }}>
+      <Grid item xs={12} sm={6}>
+        <Paper elevation={3} sx={{ padding: 4, textAlign: 'center', maxWidth: '600px', margin: 'auto', minHeight: '400px' }}>
+          <Typography variant="h4" component="h1" gutterBottom sx={{ marginBottom: 2 }}>
             Đăng ký
-          </Button>
-          <Grid container>
-            <Grid item mt={5}>
-              <Typography variant="body2">
-                {"Bạn đã có tài khoản? "}
-                <Link to="/login">Đăng nhập</Link>
-              </Typography>
-            </Grid>
-          </Grid>
-        </form>
+          </Typography>
+          <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <TextField
+              label="Tên đăng nhập"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{ maxWidth: '500px', marginBottom: 2 }}
+              InputProps={{ sx: { fontSize: 'inherit' } }}
+            />
+            <TextField
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{ maxWidth: '500px', marginBottom: 2 }}
+              InputProps={{ sx: { fontSize: 'inherit' } }}
+            />
+            <TextField
+              label="Mật khẩu"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{ maxWidth: '500px', marginBottom: 2 }}
+              InputProps={{ sx: { fontSize: 'inherit' } }}
+            />
+            <TextField
+              label="Nhập lại mật khẩu"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{ maxWidth: '500px', marginBottom: 2 }}
+              InputProps={{ sx: { fontSize: 'inherit' } }}
+            />
+            <Button variant="contained" color="primary" onClick={handleRegister} sx={{ maxWidth: '500px', marginBottom: 2 }}>
+              Đăng ký
+            </Button>
+            {message && <Typography sx={{ color: 'red', fontSize: 'inherit' }}>{message}</Typography>}
+            <Typography variant="body2" sx={{ marginTop: 2 }}>
+              Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
+            </Typography>
+          </Box>
+        </Paper>
       </Grid>
     </Grid>
   );

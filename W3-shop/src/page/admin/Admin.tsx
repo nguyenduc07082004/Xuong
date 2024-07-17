@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Email, Products } from '../../type/Interface';
-import { getAllProduct, getAllSubmit, deleteUser, deleteProduct } from '../../component/Axios/axios';
+import { Products } from '../../type/Interface';
+import { getAllProduct, deleteProduct } from '../../component/Axios/axios';
 import {
   CircularProgress,
   Table,
@@ -21,15 +21,23 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  CssBaseline
+  CssBaseline,
+  Box,
+  ListItemIcon
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from '@mui/icons-material/Add';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 const Admin = () => {
-  const [users, setUsers] = useState<Email[]>([]);
   const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState(true);
   const [userPage, setUserPage] = useState(0);
@@ -39,18 +47,6 @@ const Admin = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const getAllAdmin = async () => {
-      try {
-        const data = await getAllSubmit();
-        setUsers(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getAllAdmin();
-
     const getProducts = async () => {
       try {
         const data = await getAllProduct();
@@ -87,26 +83,16 @@ const Admin = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const handleDeleteUser = async (userId: number|string) => {
-    const cofim= window.confirm('are you sure??')
+
+  const handleDeleteProduct = async (productId: number | string) => {
+    const confirm = window.confirm('Bạn có chắc chắn muốn xóa?');
     try {
-      if(cofim){
-        await deleteUser(userId);
-        setUsers(users.filter((user) => user.id !== userId));
-      } 
-    } catch (error) {
-      console.error('Failed to delete user:', error);
-    }
-  };
-  const handleDeleteProduct = async (productId: number|string) => {
-    const cofim= window.confirm('are you sure??')
-    try {
-      if(cofim){
+      if (confirm) {
         await deleteProduct(productId);
         setProducts(products.filter((product) => product.id !== productId));
-      } 
+      }
     } catch (error) {
-      console.error('Failed to delete user:', error);
+      console.error('Lỗi khi xóa sản phẩm:', error);
     }
   };
 
@@ -114,35 +100,52 @@ const Admin = () => {
     <div>
       <Toolbar />
       <List>
-        <ListItem button>
-        <ListItemText >
-        <Link to='/'>Home</Link><hr/>
-        </ListItemText>
-        </ListItem>
-
-        <ListItem button>
-        <ListItemText>
-          <Link to='/product/add'> Add Product</Link><hr/>
-          </ListItemText>
-        </ListItem>  
-        <ListItem button>
-          <ListItemText>
-        <Link to='/'>Users</Link><hr/>
-        </ListItemText>
-        </ListItem>
-
-        <ListItem button>
-        <ListItemText>
-        <Link to='/settings'>Settings</Link><hr/>
-        </ListItemText>
-        </ListItem>
-
+        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link to='/product/add' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Product" />
+          </ListItem>
+        </Link>
+        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            <ListItemText primary="Users" />
+          </ListItem>
+        </Link>
+        <Link to='/settings' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItem>
+        </Link>
+        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log out" />
+          </ListItem>
+        </Link>
       </List>
     </div>
   );
 
   return (
-    <div>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
@@ -165,21 +168,26 @@ const Admin = () => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' }
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
         {drawer}
       </Drawer>
-      <main>
-          <Grid item xs={12} md={6}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
+        <Toolbar />
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item xs={12}>
             <Typography variant="h4" gutterBottom>Products</Typography>
-            <TableContainer component={Paper} sx={{ marginTop: 4 }}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableContainer component={Paper} sx={{ marginTop: 4, overflowX: 'auto' }}>
+              <Table sx={{ minWidth: 750 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="center">ID</TableCell>
                     <TableCell align="center">Name</TableCell>
-                    <TableCell align="center">imager</TableCell>
+                    <TableCell align="center">Image</TableCell>
                     <TableCell align="center">Description</TableCell>
                     <TableCell align="center">Price</TableCell>
                     <TableCell align="center">Action</TableCell>
@@ -192,12 +200,20 @@ const Admin = () => {
                         {product.id}
                       </TableCell>
                       <TableCell align="center">{product.name}</TableCell>
-                      <TableCell align="center"><img src={product.imageUrl} alt={product.name} width="10%"/></TableCell>
+                      <TableCell align="center">
+                        <img src={product.imageUrl} alt={product.name} width="100" height="100" />
+                      </TableCell>
                       <TableCell align="center">{product.description}</TableCell>
                       <TableCell align="center">${product.price}</TableCell>
                       <TableCell align="center">
-                        <Button variant="contained" color="primary"  onClick={() => handleDeleteProduct(product.id)}>Delete</Button>
-                        <Button variant="contained" color="secondary" ><Link to={`/product/edit/${product.id}`}>Edit</Link></Button>
+                        <Button variant="contained" color="primary" onClick={() => handleDeleteProduct(product.id)}>
+                          <DeleteIcon />
+                        </Button>
+                        <Button variant="contained" color="secondary" sx={{ marginLeft: 1 }}>
+                          <Link to={`/product/edit/${product.id}`} style={{ color: '#FFF', textDecoration: 'none' }}>
+                            <EditIcon />
+                          </Link>
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -214,51 +230,9 @@ const Admin = () => {
               />
             </TableContainer>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4" gutterBottom>User</Typography>
-            <TableContainer component={Paper} sx={{ marginTop: 4 }}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">ID</TableCell>
-                    <TableCell align="center">Name</TableCell>
-                    <TableCell align="center">Email</TableCell>
-                    <TableCell align="center">Password</TableCell>
-                    <TableCell align="center">Confirm Password</TableCell>
-                    <TableCell align="center">Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {users.slice(userPage * userRowsPerPage, userPage * userRowsPerPage + userRowsPerPage).map((user) => (
-                    <TableRow key={user.id}>
-                      <TableCell component="th" scope="row" align="center">
-                        {user.id}
-                      </TableCell>
-                      <TableCell align="center">{user.username}</TableCell>
-                      <TableCell align="center">{user.email}</TableCell>
-                      <TableCell align="center">{user.password}</TableCell>
-                      <TableCell align="center">{user.confirmPassword}</TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="primary" onClick={() => handleDeleteUser(user.id)}>Delete</Button>
-                        <Button variant="contained" color="secondary">Update</Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={users.length}
-                rowsPerPage={userRowsPerPage}
-                page={userPage}
-                onPageChange={handleUserChangePage}
-                onRowsPerPageChange={handleUserChangeRowsPerPage}
-              />
-            </TableContainer>
-          </Grid>
-      </main>
-    </div>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

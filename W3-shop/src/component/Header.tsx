@@ -62,7 +62,7 @@ const Header = () => {
             <StyledButton href="/about">Giới thiệu</StyledButton>
             <StyledButton href="/contact">Liên hệ</StyledButton>
             <StyledButton href="/products">Sản phẩm</StyledButton>
-            <StyledButton href="/reviews">Đánh giá</StyledButton>
+            <StyledButton href="/admin">admin</StyledButton>
             <StyledButton href="/comments">Bình luận</StyledButton>
           </Box>
           <Search>
