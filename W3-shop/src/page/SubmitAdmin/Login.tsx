@@ -1,29 +1,30 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { TextField, Button, Typography, Box, Grid, Paper } from '@mui/material';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      alert('Vui lòng nhập email và mật khẩu!');
+    if (!username || !password) {
+      alert('Vui lòng nhập tên đăng nhập và mật khẩu!');
       return;
     }
 
     try {
-      
-      const response = await axios.get(`http://localhost:3000/users?email=${email}&password=${password}`);
+      // Gửi yêu cầu GET để kiểm tra thông tin đăng nhập
+      const response = await axios.get(`http://localhost:3000/users?username=${username}&password=${password}`);
       
       if (response.data.length === 0) {
-        alert('Đăng nhập thất bại. Email hoặc mật khẩu không đúng.');
+        alert('Đăng nhập thất bại. Tên đăng nhập hoặc mật khẩu không đúng.');
         return;
       }
 
       const { token, user } = response.data[0];
+
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
@@ -44,10 +45,9 @@ const Login = () => {
           </Typography>
           <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField
-              label="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              label="Tên đăng nhập"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               fullWidth
               margin="normal"
               sx={{ maxWidth: '500px', marginBottom: 2 }}

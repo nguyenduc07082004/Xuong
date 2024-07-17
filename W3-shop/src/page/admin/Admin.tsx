@@ -206,7 +206,7 @@ const Admin = () => {
                       <TableCell align="center">{product.description}</TableCell>
                       <TableCell align="center">${product.price}</TableCell>
                       <TableCell align="center">
-                        <Button variant="contained" color="primary" onClick={() => handleDeleteProduct(product.id)}>
+                        <Button variant="contained" color="primary" onClick={() => handleDeleteProduct(product.id!)}>
                           <DeleteIcon />
                         </Button>
                         <Button variant="contained" color="secondary" sx={{ marginLeft: 1 }}>
