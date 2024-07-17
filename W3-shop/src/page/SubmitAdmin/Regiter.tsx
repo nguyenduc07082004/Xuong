@@ -48,6 +48,10 @@ const Register: React.FC = () => {
       const response = await axios.post('http://localhost:3000/users', newUser);
       
       if (response.status === 201) {
+        // Save token and user info to localStorage
+        localStorage.setItem('token', newUser.token);
+        localStorage.setItem('user', JSON.stringify(newUser));
+        
         alert('Đăng ký thành công!');
         navigate('/'); // Redirect to home page
       }

@@ -71,7 +71,6 @@
       "imageUrl": "depppp"
     }
   ],
-  
   "users": [
     {
       "id": "c9d7",
@@ -81,46 +80,23 @@
       "token": "4baby6t712u"
     },
     {
-      "id": "33cf",
+      "id": "255",
       "username": "Quang123",
-      "email": "Quang@gmail.com",
+      "email": "quang123@gmail.com",
       "password": "Quang123",
-      "token": "qahtgoa33i"
-    },
+      "token": "4kuurzzgvie"
+    }
+  ],
+  "login": [
     {
-      "id": "d71a",
-      "username": "Quang123",
-      "email": "Quang@gmail.com",
-      "password": "Quang123",
-      "token": "kiuy1r9eo5"
-    },
-    {
-      "id": "6a53",
-      "username": "Quang123",
-      "email": "Quang@gmail.com",
-      "password": "Quang123",
-      "token": "06eezlferpbs"
-    },
-    {
-      "id": "c0a5",
-      "username": "Quang123",
-      "email": "Quang@gmail.com",
-      "password": "Quang123",
-      "token": "qaevmrc8svf"
-    },
-    {
-      "id": "c0b3",
-      "username": "quang",
+      "id": "58c7",
       "email": "quang@gmail.com",
-      "password": "Quang123",
-      "token": "gh05jfrvyfm"
+      "password": "Quang123"
     },
     {
-      "id": 346,
-      "username": "quang",
+      "id": "a653",
       "email": "quang@gmail.com",
-      "password": "Quang123",
-      "token": "48v25v02kwa"
+      "password": "Quang123"
     }
   ]
 }

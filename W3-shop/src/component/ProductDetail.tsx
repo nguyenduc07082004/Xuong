@@ -2,23 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Products } from "../type/Interface";
-import { Container, Typography, Card, CardMedia, Box, Grid, Button} from '@mui/material';
+import { Container, Typography, Card, CardMedia, Box, Grid, Button } from '@mui/material';
 import Header from './Header';
 import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Products | null>(null);
-  const [quantity, setQuantity] = useState<number>(1); // State for quantity, default 1
+  const [quantity, setQuantity] = useState<number>(1);
+  const [user, setUser] = useState<{ username: string } | null>(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/products/${id}`)
-      .then(response => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/products/${id}`);
         setProduct(response.data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching product:', error);
-      });
+      }
+    };
+
+    fetchProduct();
+
+    // Lấy thông tin người dùng từ localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error('Không thể lấy thông tin người dùng từ localStorage:', error);
+      }
+    }
   }, [id]);
 
   const handleIncreaseQuantity = () => {
@@ -32,7 +47,6 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleAddToCart = () => {
-    // Implement your add to cart logic here
     console.log(`Added ${quantity} ${product?.name} to cart`);
   };
 
@@ -42,7 +56,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <Container>
-      <Header />
+      <Header user={user} />
       <Box my={4}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
@@ -59,7 +73,6 @@ const ProductDetail: React.FC = () => {
             <Typography variant="h4" component="h1" gutterBottom>
               {product.name}
             </Typography>
-            
             <Typography variant="body1" color="text.secondary" gutterBottom>
               {product.description}
             </Typography>
