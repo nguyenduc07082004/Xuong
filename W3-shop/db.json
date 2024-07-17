@@ -1,6 +1,20 @@
 {
   "products": [
     {
+      "name": "Product 2",
+      "description": "Description of Product 1",
+      "price": "1000",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Product 2",
+      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
+      "description": "Description of Product 2",
+      "price": 150
+    },
+    {
       "id": "3",
       "name": "Product 3",
       "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
@@ -48,20 +62,6 @@
       "description": "phòng 410",
       "price": "9999",
       "imageUrl": "r"
-    },
-    {
-      "id": "e8bc",
-      "name": "iphon",
-      "description": "âvasdvaycfew",
-      "price": "20000",
-      "imageUrl": "depppp"
-    },
-    {
-      "id": "3a72",
-      "name": "dd",
-      "description": "phòng 410",
-      "price": "235235",
-      "imageUrl": "323"
     }
   ],
   "users": [
@@ -80,11 +80,18 @@
       "token": "4kuurzzgvie"
     },
     {
-      "id": 703,
+      "id": "703",
       "username": "quang2308",
       "email": "quangfpt@gmail.com",
       "password": "Quang2308",
       "token": "b6pcgjnenk6"
+    },
+    {
+      "id": 464,
+      "username": "Tran Vinh Quang",
+      "email": "quangtvPh39380@gmail.com",
+      "password": "QUang123",
+      "token": "ugshofwuhxa"
     }
   ],
   "login": [

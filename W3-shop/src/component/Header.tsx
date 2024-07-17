@@ -1,5 +1,4 @@
-
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -73,7 +72,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
           <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: '16px' }}>
             {user ? (
               <>
-                <Typography variant="body1" sx={{ marginRight: '8px' }}>
+                <Typography variant="body1" sx={{ marginRight: '8px', display: { xs: 'none', md: 'block' } }}>
                   Xin chào, {user.username}
                 </Typography>
                 <Button variant="outlined" color="inherit" onClick={handleLogout}>
@@ -83,7 +82,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
             ) : (
               <>
                 <StyledButton href="/login">Đăng nhập</StyledButton>
-                <Typography variant="body2" sx={{ marginX: '8px' }}>|</Typography>
+                <Typography variant="body2" sx={{ marginX: '8px', display: { xs: 'none', md: 'block' } }}>|</Typography>
                 <StyledButton href="/register">Đăng ký</StyledButton>
               </>
             )}
