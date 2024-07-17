@@ -40,8 +40,6 @@ const drawerWidth = 240;
 const Admin = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState(true);
-  const [userPage, setUserPage] = useState(0);
-  const [userRowsPerPage, setUserRowsPerPage] = useState(5);
   const [productPage, setProductPage] = useState(0);
   const [productRowsPerPage, setProductRowsPerPage] = useState(5);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -62,16 +60,6 @@ const Admin = () => {
 
   if (loading) return <CircularProgress />;
 
-  const handleUserChangePage = (event: unknown, newPage: number) => {
-    setUserPage(newPage);
-  };
-
-  const handleUserChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setUserRowsPerPage(parseInt(event.target.value, 10));
-    setUserPage(0);
-  };
 
   const handleProductChangePage = (event: unknown, newPage: number) => {
     setProductPage(newPage);
