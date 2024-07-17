@@ -2,20 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Products } from "../type/Interface";
-
-import { 
-  Container, 
-  Typography, 
-  Card, 
-  CardMedia, 
-  Box, 
-  Grid, 
-  Button, 
-  Divider 
-} from '@mui/material';
-
 import { Container, Typography, Card, CardMedia, Box, Grid, Button } from '@mui/material';
-
 import Header from './Header';
 import Footer from "./Footer";
 
@@ -91,19 +78,7 @@ const ProductDetail: React.FC = () => {
               Price: ${product.price}
             </Typography>
             <Typography variant="body1" component="p" gutterBottom>
-              SKU: {product.sku}
-            </Typography>
-            <Typography variant="body1" component="p" gutterBottom>
-              Brand: {product.brand}
-            </Typography>
-            <Typography variant="body1" component="p" gutterBottom>
-              Category: {product.category}
-            </Typography>
-            <Divider style={{ margin: '16px 0' }} />
-            <Box display="flex" alignItems="center" justifyContent="center" mt={2}>
-              <Typography variant="body1" component="p" style={{ marginRight: '16px' }}>
-                Quantity:
-              </Typography>
+              Quantity:
               <Button variant="outlined" size="small" onClick={handleDecreaseQuantity}>
                 -
               </Button>
@@ -113,13 +88,12 @@ const ProductDetail: React.FC = () => {
               <Button variant="outlined" size="small" onClick={handleIncreaseQuantity}>
                 +
               </Button>
-            </Box>
+            </Typography>
             <Button 
               variant="contained" 
               color="primary" 
               size="large"
               onClick={handleAddToCart}
-              style={{ marginTop: '16px', alignSelf: 'center' }}
             >
               Add to Cart
             </Button>
