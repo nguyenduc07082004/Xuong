@@ -74,10 +74,10 @@ const ProductDetail: React.FC = () => {
             <Typography variant="body1" color="text.secondary" gutterBottom>
               {product.description}
             </Typography>
-            <Typography variant="h5" component="p" gutterBottom>
+            <Typography variant="h5" component="p" gutterBottom color='#000'>
               Price: ${product.price}
             </Typography>
-            <Typography variant="body1" component="p" gutterBottom>
+            <Typography variant="body1" component="p" gutterBottom color='#000'>
               Quantity:
               <Button variant="outlined" size="small" onClick={handleDecreaseQuantity}>
                 -
