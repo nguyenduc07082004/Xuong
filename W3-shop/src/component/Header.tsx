@@ -48,7 +48,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/login");
+    navigate("/register");
   };
 
   return (
@@ -113,7 +113,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
                 >
                   |
                 </Typography>
-                <StyledButton href="/register">Đăng ký</StyledButton>
+                <StyledButton href="/login">Đăng ký</StyledButton>
               </>
             )}
           </Box>

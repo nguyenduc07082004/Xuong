@@ -1,68 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Box, Grid, Paper } from "@mui/material";
 import { User } from "../../type/Interface";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleRegister = async () => {
     if (!username || !email || !password || !confirmPassword) {
-      alert("Không được để trống bất kỳ trường nào!");
+      alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Nhập lại mật khẩu không đúng");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert("Email không hợp lệ");
-      return;
-    }
-
-    const passwordRegex = /(?=.*[A-Z])|(?=.*\d)|(?=.*[!@#$%^&*])/;
-    if (!passwordRegex.test(password)) {
-      alert(
-        "Mật khẩu phải có ít nhất một ký tự viết hoa, số hoặc ký tự đặc biệt"
-      );
+      alert("Mật khẩu và xác nhận mật khẩu không khớp!");
       return;
     }
 
     try {
-      const newUser: User = {
-        id: Math.floor(Math.random() * 1000),
+      const response = await axios.post<User>("http://localhost:3000/users", {
         username,
         email,
         password,
-        token: generateToken(),
-      };
+      });
+      const { id } = response.data;
 
-      const response = await axios.post("http://localhost:3000/users", newUser);
+      const token = `token-${id}`;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
-      if (response.status === 201) {
-        localStorage.setItem("token", newUser.token);
-        localStorage.setItem("user", JSON.stringify(newUser));
-
-        alert("Đăng ký thành công!");
-        navigate("/");
-      }
+      alert("Đăng ký thành công!");
+      navigate("/");
     } catch (error) {
-      alert("Lỗi khi đăng ký người dùng");
-      console.error("Lỗi khi đăng ký người dùng:", error);
+      alert("Đăng ký thất bại. Vui lòng thử lại sau.");
+      console.error("Đăng ký thất bại:", error);
     }
-  };
-
-  const generateToken = () => {
-    return Math.random().toString(36).substr(2);
   };
 
   return (
@@ -79,7 +56,7 @@ const Register: React.FC = () => {
             textAlign: "center",
             maxWidth: "600px",
             margin: "auto",
-            minHeight: "400px",
+            minHeight: "300px",
           }}
         >
           <Typography
@@ -95,13 +72,12 @@ const Register: React.FC = () => {
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
             <TextField
-              label="Tên đăng nhập"
+              label="Tên người dùng"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               fullWidth
               margin="normal"
               sx={{ maxWidth: "500px", marginBottom: 2 }}
-              InputProps={{ sx: { fontSize: "inherit" } }}
             />
             <TextField
               label="Email"
@@ -111,7 +87,6 @@ const Register: React.FC = () => {
               fullWidth
               margin="normal"
               sx={{ maxWidth: "500px", marginBottom: 2 }}
-              InputProps={{ sx: { fontSize: "inherit" } }}
             />
             <TextField
               label="Mật khẩu"
@@ -121,17 +96,15 @@ const Register: React.FC = () => {
               fullWidth
               margin="normal"
               sx={{ maxWidth: "500px", marginBottom: 2 }}
-              InputProps={{ sx: { fontSize: "inherit" } }}
             />
             <TextField
-              label="Nhập lại mật khẩu"
+              label="Xác nhận mật khẩu"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               fullWidth
               margin="normal"
               sx={{ maxWidth: "500px", marginBottom: 2 }}
-              InputProps={{ sx: { fontSize: "inherit" } }}
             />
             <Button
               variant="contained"
@@ -141,11 +114,6 @@ const Register: React.FC = () => {
             >
               Đăng ký
             </Button>
-            {message && (
-              <Typography sx={{ color: "red", fontSize: "inherit" }}>
-                {message}
-              </Typography>
-            )}
             <Typography variant="body2" sx={{ marginTop: 2 }}>
               Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
             </Typography>
