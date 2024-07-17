@@ -48,7 +48,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/register");
+    navigate("/login");
   };
 
   return (
@@ -62,7 +62,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
               flexGrow: 1,
               fontStyle: "italic",
               textShadow:
-                "1px 1px 0px gold, -1px -1px 0px gold, 1px -1px 0px gold, -1px 1px 0px gold", // Tạo viền chữ màu vàng sáng
+                "1px 1px 0px gold, -1px -1px 0px gold, 1px -1px 0px gold, -1px 1px 0px gold", 
             }}
           >
             <h3>W3-Shop</h3>
@@ -94,7 +94,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
                     display: { xs: "none", md: "block" },
                   }}
                 >
-                  Xin chào, {user.username}
+                   {user.username}
                 </Typography>
                 <Button
                   variant="outlined"
@@ -113,7 +113,7 @@ const Header = ({ user }: { user: { username: string } | null }) => {
                 >
                   |
                 </Typography>
-                <StyledButton href="/login">Đăng ký</StyledButton>
+                <StyledButton href="/register">Đăng ký</StyledButton>
               </>
             )}
           </Box>
