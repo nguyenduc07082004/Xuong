@@ -23,8 +23,6 @@ const ProductDetail: React.FC = () => {
     };
 
     fetchProduct();
-
-    // Lấy thông tin người dùng từ localStorage
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {

@@ -24,8 +24,6 @@ const Home: React.FC = () => {
       }
     };
     getAll();
-
-    // Lấy thông tin người dùng từ localStorage
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {

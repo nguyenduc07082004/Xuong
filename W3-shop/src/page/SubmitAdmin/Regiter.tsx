@@ -10,7 +10,7 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [message] = useState('');
 
   const handleRegister = async () => {
     if (!username || !email || !password || !confirmPassword) {
@@ -37,23 +37,22 @@ const Register: React.FC = () => {
 
     try {
       const newUser: User = {
-        id: Math.floor(Math.random() * 1000), // Dummy ID generation for demo purpose
+        id: Math.floor(Math.random() * 1000), 
         username,
         email,
         password,
         token: generateToken(),
       };
 
-      // Send POST request to register user
       const response = await axios.post('http://localhost:3000/users', newUser);
       
       if (response.status === 201) {
-        // Save token and user info to localStorage
+        
         localStorage.setItem('token', newUser.token);
         localStorage.setItem('user', JSON.stringify(newUser));
         
         alert('Đăng ký thành công!');
-        navigate('/'); // Redirect to home page
+        navigate('/'); 
       }
     } catch (error) {
       alert('Lỗi khi đăng ký người dùng');
@@ -62,7 +61,7 @@ const Register: React.FC = () => {
   };
 
   const generateToken = () => {
-    return Math.random().toString(36).substr(2); // Simple token generation for demonstration
+    return Math.random().toString(36).substr(2); 
   };
 
   return (

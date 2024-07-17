@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
+import {  useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -47,11 +47,8 @@ const Header = ({ user }: { user: { username: string } | null }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Xóa token và dữ liệu người dùng khỏi localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-
-    // Điều hướng về trang đăng nhập
     navigate('/login');
   };
 

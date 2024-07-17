@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { TextField, Button, Typography, Box, Grid, Paper } from '@mui/material';
@@ -15,7 +15,7 @@ const Login = () => {
     }
 
     try {
-      // Thực hiện yêu cầu GET để kiểm tra thông tin đăng nhập
+      
       const response = await axios.get(`http://localhost:3000/users?email=${email}&password=${password}`);
       
       if (response.data.length === 0) {
@@ -24,13 +24,11 @@ const Login = () => {
       }
 
       const { token, user } = response.data[0];
-
-      // Lưu token và thông tin người dùng vào localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
       alert('Đăng nhập thành công!');
-      navigate('/'); // Chuyển hướng đến trang chủ
+      navigate('/'); 
     } catch (error) {
       alert('Đăng nhập thất bại. Vui lòng thử lại sau.');
       console.error('Đăng nhập thất bại:', error);
