@@ -15,11 +15,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Products } from "../../../type/Interface";
-import { productDetail } from "../../../component/Axios/axios";
 
 const EditProduct: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const { id} = useParams<{ id: string }>();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState<Products | null>(null);
 
@@ -33,8 +32,10 @@ const EditProduct: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const data= await productDetail()
-        setProduct(data);
+        const response = await axios.get(
+          `http://localhost:3000/products/${id}`
+        );
+        setProduct(response.data);
         setLoading(false);
       } catch (error) {
         alert("Có lỗi xảy ra khi tải sản phẩm");

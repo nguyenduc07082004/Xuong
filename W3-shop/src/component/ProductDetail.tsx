@@ -5,7 +5,6 @@ import { Products } from "../type/Interface";
 import { Container, Typography, Card, CardMedia, Box, Grid, Button } from '@mui/material';
 import Header from './Header';
 import Footer from "./Footer";
-import { productDetail } from './Axios/axios';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,8 +15,8 @@ const ProductDetail: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const data= await productDetail()
-        setProduct(data);
+        const response = await axios.get(`http://localhost:3000/products/${id}`);
+        setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
