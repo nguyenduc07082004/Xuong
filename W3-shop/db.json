@@ -29,39 +29,11 @@
       "price": 200
     },
     {
-      "id": "5",
-      "name": "Product 3",
+      "name": "Product 5hjgjh",
+      "description": "Description of Product fjjygj",
+      "price": "757858",
       "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "description": "Description of Product 3",
-      "price": 200
-    },
-    {
-      "id": "6",
-      "name": "Product 3",
-      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "description": "Description of Product 3",
-      "price": 200
-    },
-    {
-      "id": "a004",
-      "name": "Áo Liverpool",
-      "description": "phòng 410",
-      "price": "1002",
-      "imageUrl": "fffff"
-    },
-    {
-      "id": "141b",
-      "name": "Áo Liverpool",
-      "description": "phòng 410",
-      "price": "1234",
-      "imageUrl": "fffff"
-    },
-    {
-      "id": "ee8b",
-      "name": "Áo Liverpool",
-      "description": "phòng 410",
-      "price": "9999",
-      "imageUrl": "r"
+      "id": "6"
     }
   ],
   "users": [
@@ -79,6 +51,12 @@
     },
     {
       "id": "8c70",
+      "username": "Quang123",
+      "email": "quangtvph39380@fpt.edu.vn",
+      "password": "123456"
+    },
+    {
+      "id": "ff4b",
       "username": "Quang123",
       "email": "quangtvph39380@fpt.edu.vn",
       "password": "123456"

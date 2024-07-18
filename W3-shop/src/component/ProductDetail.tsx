@@ -5,6 +5,7 @@ import { Products } from "../type/Interface";
 import { Container, Typography, Card, CardMedia, Box, Grid, Button } from '@mui/material';
 import Header from './Header';
 import Footer from "./Footer";
+import { productDetail } from './Axios/axios';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,8 +16,8 @@ const ProductDetail: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/products/${id}`);
-        setProduct(response.data);
+        const data= await productDetail()
+        setProduct(data);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -74,10 +75,10 @@ const ProductDetail: React.FC = () => {
             <Typography variant="body1" color="text.secondary" gutterBottom>
               {product.description}
             </Typography>
-            <Typography variant="h5" component="p" gutterBottom>
+            <Typography variant="h5" component="p"  color="text.secondary" gutterBottom>
               Price: ${product.price}
             </Typography>
-            <Typography variant="body1" component="p" gutterBottom>
+            <Typography variant="body1" component="p"  color="text.secondary" gutterBottom>
               Quantity:
               <Button variant="outlined" size="small" onClick={handleDecreaseQuantity}>
                 -

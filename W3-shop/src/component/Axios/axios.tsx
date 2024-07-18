@@ -1,6 +1,9 @@
 import axios from "axios";
+import { SubmitHandler } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { Products } from "../../type/Interface";
 
-
+const { id } = useParams<{ id: string }>();
 
 
 export const getAllProduct = async () =>{
@@ -10,7 +13,16 @@ export const getAllProduct = async () =>{
       }catch(error){
         console.log(error)
       };
-}
+};
+
+export const productDetail = async () => {
+  try {
+    const response = await axios.get(`http://localhost:3000/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product:', error);
+  }
+};
 
 export const deleteProduct = async (productId: number|string) => {
   try {
