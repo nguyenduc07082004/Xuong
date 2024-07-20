@@ -1,17 +1,17 @@
 {
   "products": [
     {
+      "_id": "1",
       "name": "Product 2",
       "description": "Description of Product 1",
       "price": "1000",
       "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "id": "1",
       "category":"category"
     }
   ],
   "users": [
     {
-      "id": "1",
+      "_id": "1",
       "username": "user1",
       "email": "user1@example.com",
       "password": "password1",
@@ -21,7 +21,7 @@
   "tokens": [],
   "categories":[
     {
-      "id":"4F32",
+      "_id":"4F32",
       "name":"iphon",
       "description":"Description of Product 1"
     }
