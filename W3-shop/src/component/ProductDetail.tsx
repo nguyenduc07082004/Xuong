@@ -7,7 +7,7 @@ import Header from './Header';
 import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
-  const { id } = useParams<{id:string}>();
+  const { id } = useParams();
   const [product, setProduct] = useState<Products | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [user, setUser] = useState<{ username: string } | null>(null);

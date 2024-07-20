@@ -5,35 +5,8 @@
       "description": "Description of Product 1",
       "price": "1000",
       "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "id": "1"
-    },
-    {
-      "id": "2",
-      "name": "Product 2",
-      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "description": "Description of Product 2",
-      "price": 150
-    },
-    {
-      "id": "3",
-      "name": "Product 3",
-      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "description": "Description of Product 3",
-      "price": 200
-    },
-    {
-      "id": "4",
-      "name": "Product 3",
-      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "description": "Description of Product 3",
-      "price": 200
-    },
-    {
-      "name": "Product 5hjgjh",
-      "description": "Description of Product fjjygj",
-      "price": "757858",
-      "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "id": "6"
+      "id": "1",
+      "category":"category"
     }
   ],
   "users": [
@@ -41,29 +14,16 @@
       "id": "1",
       "username": "user1",
       "email": "user1@example.com",
-      "password": "password1"
-    },
-    {
-      "id": "2",
-      "username": "user2",
-      "email": "user2@example.com",
-      "password": "password2"
-    },
-    {
-      "id": "8c70",
-      "username": "Quang123",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456"
-    },
-    {
-      "id": "ff4b",
-      "username": "Quang123",
-      "email": "quangtvph39380@fpt.edu.vn",
-      "password": "123456"
+      "password": "password1",
+      "role":"memver"
     }
   ],
   "tokens": [],
   "categories":[
-    
+    {
+      "id":"4F32",
+      "name":"iphon",
+      "description":"Description of Product 1"
+    }
   ]
 }

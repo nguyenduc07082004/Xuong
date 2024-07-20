@@ -13,3 +13,9 @@ export interface User {
   email: string;
   password: string;
 }
+
+export interface Category{
+  _id?:number|string
+  name:string
+  description:string
+}
