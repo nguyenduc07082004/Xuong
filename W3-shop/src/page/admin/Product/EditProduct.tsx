@@ -18,7 +18,7 @@ import { Products } from "../../../type/Interface";
 
 const EditProduct: React.FC = () => {
   const navigate = useNavigate();
-  const { id} = useParams<{ id: string }>();
+  const { id} = useParams();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState<Products | null>(null);
 
@@ -32,14 +32,11 @@ const EditProduct: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/products/${id}`
-        );
-        setProduct(response.data);
+        const res = await axios.get(`http://localhost:3000/products/${id}`);
+        setProduct(res.data);
         setLoading(false);
       } catch (error) {
-        alert("Có lỗi xảy ra khi tải sản phẩm");
-        navigate("/admin");
+        console.log('có lỗi khi tải sản phẩm', error)
       }
     };
 
@@ -48,7 +45,7 @@ const EditProduct: React.FC = () => {
 
   useEffect(() => {
     if (product) {
-      setValue("name", product.name);
+      setValue("title", product.title);
       setValue("description", product.description);
       setValue("price", product.price);
       setValue("imageUrl", product.imageUrl);
@@ -95,12 +92,12 @@ const EditProduct: React.FC = () => {
               margin="normal"
               required
               fullWidth
-              id="name"
+              id="title"
               label="Tên sản phẩm"
               autoFocus
-              {...register("name", { required: "Tên sản phẩm là bắt buộc" })}
-              error={!!errors?.name?.message}
-              helperText={errors?.name?.message}
+              {...register("title", { required: "Tên sản phẩm là bắt buộc" })}
+              error={!!errors?.title?.message}
+              helperText={errors?.title?.message}
             />
             <TextField
               variant="outlined"

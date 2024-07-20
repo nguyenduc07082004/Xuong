@@ -13,10 +13,10 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     <Card variant="outlined" sx={{ margin: 2 }}>
       <CardContent>
         <Typography variant="h5" component="div">
-          {product.name}
+          {product.title}
         </Typography>
         <Typography>
-          <img src={product.imageUrl} alt={product.name} width="50%" />
+          <img src={product.imageUrl} alt={product.title} width="50%" />
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {product.description}
@@ -26,7 +26,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" component={Link} to={`/product/${product.id}`}>
+        <Button size="small" component={Link} to={`/products/${product._id!}`}>
           Learn More
         </Button>
       </CardActions>

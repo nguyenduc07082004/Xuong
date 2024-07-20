@@ -81,7 +81,7 @@ const Admin = () => {
     try {
       if (confirm) {
         await deleteProduct(productId);
-        setProducts(products.filter((product) => product.id !== productId));
+        setProducts(products.filter((product) => product._id !== productId));
       }
     } catch (error) {
       console.error("Lỗi khi xóa sản phẩm:", error);
@@ -101,7 +101,7 @@ const Admin = () => {
           </ListItem>
         </Link>
         <Link
-          to="/product/add"
+          to="/products/add"
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <ListItem button>
@@ -195,10 +195,11 @@ const Admin = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell align="center">ID</TableCell>
-                    <TableCell align="center">Name</TableCell>
+                    <TableCell align="center">Title</TableCell>
                     <TableCell align="center">Image</TableCell>
-                    <TableCell align="center">Description</TableCell>
                     <TableCell align="center">Price</TableCell>
+                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="center">Description</TableCell>
                     <TableCell align="center">Action</TableCell>
                   </TableRow>
                 </TableHead>
@@ -209,28 +210,29 @@ const Admin = () => {
                       productPage * productRowsPerPage + productRowsPerPage
                     )
                     .map((product) => (
-                      <TableRow key={product.id}>
+                      <TableRow key={product._id}>
                         <TableCell component="th" scope="row" align="center">
-                          {product.id}
+                          {product._id}
                         </TableCell>
-                        <TableCell align="center">{product.name}</TableCell>
+                        <TableCell align="center">{product.title}</TableCell>
                         <TableCell align="center">
                           <img
                             src={product.imageUrl}
-                            alt={product.name}
+                            alt={product.title}
                             width="100"
                             height="100"
                           />
                         </TableCell>
+                        <TableCell align="center">${product.price}</TableCell>
+                        <TableCell align="center">{product.category}</TableCell>
                         <TableCell align="center">
                           {product.description}
                         </TableCell>
-                        <TableCell align="center">${product.price}</TableCell>
                         <TableCell align="center">
                           <Button
                             variant="contained"
                             color="primary"
-                            onClick={() => handleDeleteProduct(product.id!)}
+                            onClick={() => handleDeleteProduct(product._id!)}
                           >
                             <DeleteIcon />
                           </Button>
@@ -240,7 +242,7 @@ const Admin = () => {
                             sx={{ marginLeft: 1 }}
                           >
                             <Link
-                              to={`/product/edit/${product.id}`}
+                              to={`/products/edit/${product._id}`}
                               style={{ color: "#FFF", textDecoration: "none" }}
                             >
                               <EditIcon />

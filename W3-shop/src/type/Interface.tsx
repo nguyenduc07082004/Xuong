@@ -1,13 +1,14 @@
 export interface Products {
-  id?: number | string;
-  name: string;
+  _id?: number | string;
+  title: string;
   imageUrl: string;
   description: string;
   price: number;
+  category:string;
 }
 
 export interface User {
-  id?: number | string;
+  _id?: number | string;
   username: string;
   email: string;
   password: string;

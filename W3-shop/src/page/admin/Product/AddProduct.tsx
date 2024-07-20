@@ -59,12 +59,12 @@ const AddProduct: React.FC = () => {
               margin="normal"
               required
               fullWidth
-              id="name"
+              id="title"
               label="Tên sản phẩm"
               autoFocus
-              {...register("name", { required: "Tên sản phẩm là bắt buộc" })}
-              error={!!errors?.name?.message}
-              helperText={errors?.name?.message}
+              {...register("title", { required: "Tên sản phẩm là bắt buộc" })}
+              error={!!errors?.title?.message}
+              helperText={errors?.title?.message}
             />
             <TextField
               variant="outlined"

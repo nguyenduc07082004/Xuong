@@ -25,8 +25,8 @@ const Login: React.FC = () => {
         return;
       }
 
-      const { id } = response.data[0];
-      const token = `token-${id}`;
+      const { _id } = response.data[0];
+      const token = `token-${_id}`;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(response.data[0]));
 

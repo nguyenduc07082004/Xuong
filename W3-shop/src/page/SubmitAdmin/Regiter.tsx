@@ -28,9 +28,9 @@ const Register: React.FC = () => {
         email,
         password,
       });
-      const { id } = response.data;
+      const { _id } = response.data;
 
-      const token = `token-${id}`;
+      const token = `token-${_id}`;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(response.data));
 

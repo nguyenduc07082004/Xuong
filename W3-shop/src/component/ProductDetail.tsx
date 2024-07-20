@@ -7,7 +7,7 @@ import Header from './Header';
 import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{id:string}>();
   const [product, setProduct] = useState<Products | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [user, setUser] = useState<{ username: string } | null>(null);
@@ -45,7 +45,7 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} ${product?.name} to cart`);
+    console.log(`Added ${quantity} ${product?.title} to cart`);
   };
 
   if (!product) {
@@ -63,13 +63,13 @@ const ProductDetail: React.FC = () => {
                 component="img"
                 height="500"
                 image={product.imageUrl}
-                alt={product.name}
+                alt={product.title}
               />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="h4" component="h1" gutterBottom>
-              {product.name}
+              {product.title}
             </Typography>
             <Typography variant="body1" color="text.secondary" gutterBottom>
               {product.description}
