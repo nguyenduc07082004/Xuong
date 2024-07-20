@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Product from "../models/ProductModel";
 import ApiError from "../utils/ApiError";
+import Products from "../models/ProductModel";
 
 class ProductsController {
   // GET /products
@@ -36,7 +37,7 @@ class ProductsController {
   // POST /products
   async createProduct(req, res, next) {
     try {
-      const newProduct = await Product.create(req.body);
+      const newProduct = await Products.create(req.body);
       res.status(StatusCodes.CREATED).json({
         message: "Create Product Successfull",
         data: newProduct,
