@@ -4,7 +4,7 @@ export interface Products {
   imageUrl: string;
   description: string;
   price: number;
-  category:string;
+  category?:string;
 }
 
 export interface User {
