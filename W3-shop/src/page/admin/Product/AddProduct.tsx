@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -8,14 +8,20 @@ import {
   Paper,
   TextField,
   Typography,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Products } from "../../../type/Interface";
+import { Products, Category } from "../../../type/Interface";
 
 const AddProduct: React.FC = () => {
   const navigate = useNavigate();
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const {
     register,
@@ -23,9 +29,28 @@ const AddProduct: React.FC = () => {
     formState: { errors },
   } = useForm<Products>();
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/categories");
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách danh mục:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   const onSubmit: SubmitHandler<Products> = async (data) => {
+    if (!selectedCategory) {
+      alert("Vui lòng chọn danh mục");
+      return;
+    }
+
     try {
-      await axios.post("http://localhost:3000/products", data);
+      const newProduct = { ...data, category: selectedCategory };
+      await axios.post("http://localhost:3000/products", newProduct);
       alert("Sản phẩm đã được thêm thành công");
       navigate("/admin");
     } catch (error) {
@@ -110,6 +135,22 @@ const AddProduct: React.FC = () => {
               error={!!errors?.imageUrl?.message}
               helperText={errors?.imageUrl?.message}
             />
+            <FormControl fullWidth variant="outlined" margin="normal" required>
+              <InputLabel id="category-label">Danh mục</InputLabel>
+              <Select
+                labelId="category-label"
+                id="category"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value as string)}
+                label="Danh mục"
+              >
+                {categories.map((category) => (
+                  <MenuItem key={category._id} value={category._id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <Button type="submit" fullWidth variant="contained" color="primary">
               Thêm sản phẩm
             </Button>

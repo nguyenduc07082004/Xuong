@@ -12,10 +12,11 @@ export interface User {
   username: string;
   email: string;
   password: string;
+  role?:string;
 }
 
 export interface Category{
   _id?:number|string
   name:string
-  description:string
+  description?:string
 }

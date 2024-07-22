@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Products } from "../../type/Interface";
-import { getAllProduct, deleteProduct } from "../../component/Axios/axios";
+import { Products, Category } from "../../type/Interface";
+import { getAllProduct, deleteProduct, getAllCategories, deleteCategory } from "../../component/Axios/axios";
 import {
   CircularProgress,
   Table,
@@ -39,9 +39,12 @@ const drawerWidth = 240;
 
 const Admin = () => {
   const [products, setProducts] = useState<Products[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [productPage, setProductPage] = useState(0);
   const [productRowsPerPage, setProductRowsPerPage] = useState(5);
+  const [categoryPage, setCategoryPage] = useState(0);
+  const [categoryRowsPerPage, setCategoryRowsPerPage] = useState(5);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -55,11 +58,23 @@ const Admin = () => {
         setLoading(false);
       }
     };
+
+    const getCategories = async () => {
+      try {
+        const data = await getAllCategories();
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     getProducts();
+    getCategories();
   }, []);
 
   if (loading) return <CircularProgress />;
-
 
   const handleProductChangePage = (event: unknown, newPage: number) => {
     setProductPage(newPage);
@@ -70,6 +85,17 @@ const Admin = () => {
   ) => {
     setProductRowsPerPage(parseInt(event.target.value, 10));
     setProductPage(0);
+  };
+
+  const handleCategoryChangePage = (event: unknown, newPage: number) => {
+    setCategoryPage(newPage);
+  };
+
+  const handleCategoryChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCategoryRowsPerPage(parseInt(event.target.value, 10));
+    setCategoryPage(0);
   };
 
   const handleDrawerToggle = () => {
@@ -85,6 +111,18 @@ const Admin = () => {
       }
     } catch (error) {
       console.error("Lỗi khi xóa sản phẩm:", error);
+    }
+  };
+
+  const handleDeleteCategory = async (categoryId: number | string) => {
+    const confirm = window.confirm("Bạn có chắc chắn muốn xóa?");
+    try {
+      if (confirm) {
+        await deleteCategory(categoryId);
+        setCategories(categories.filter((category) => category._id !== categoryId));
+      }
+    } catch (error) {
+      console.error("Lỗi khi xóa danh mục:", error);
     }
   };
 
@@ -109,6 +147,17 @@ const Admin = () => {
               <AddIcon />
             </ListItemIcon>
             <ListItemText primary="Add Product" />
+          </ListItem>
+        </Link>
+        <Link
+          to="/categories/add"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Category" />
           </ListItem>
         </Link>
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
@@ -141,6 +190,11 @@ const Admin = () => {
       </List>
     </div>
   );
+
+  const getCategoryNameById = (categoryId: string|undefined) => {
+    const category = categories.find(cat => cat._id === categoryId);
+    return category ? category.name:"iphon"
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -224,7 +278,7 @@ const Admin = () => {
                           />
                         </TableCell>
                         <TableCell align="center">${product.price}</TableCell>
-                        <TableCell align="center">{product.category}</TableCell>
+                        <TableCell align="center">{getCategoryNameById(product.category)}</TableCell>
                         <TableCell align="center">
                           {product.description}
                         </TableCell>
@@ -261,6 +315,74 @@ const Admin = () => {
                 page={productPage}
                 onPageChange={handleProductChangePage}
                 onRowsPerPageChange={handleProductChangeRowsPerPage}
+              />
+            </TableContainer>
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
+          <Grid item xs={12}>
+            <Typography variant="h4" gutterBottom>
+              Categories
+            </Typography>
+            <TableContainer
+              component={Paper}
+              sx={{ marginTop: 4, overflowX: "auto" }}
+            >
+              <Table sx={{ minWidth: 750 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">ID</TableCell>
+                    <TableCell align="center">Name</TableCell>
+                    <TableCell align="center">Description</TableCell>
+                    <TableCell align="center">Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {categories
+                    .slice(
+                      categoryPage * categoryRowsPerPage,
+                      categoryPage * categoryRowsPerPage + categoryRowsPerPage
+                    )
+                    .map((category) => (
+                      <TableRow key={category._id}>
+                        <TableCell component="th" scope="row" align="center">
+                          {category._id}
+                        </TableCell>
+                        <TableCell align="center">{category.name}</TableCell>
+                        <TableCell align="center">{category.description}</TableCell>
+                        <TableCell align="center">
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => handleDeleteCategory(category._id!)}
+                          >
+                            <DeleteIcon />
+                          </Button>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            sx={{ marginLeft: 1 }}
+                          >
+                            <Link
+                              to={`/categories/edit/${category._id}`}
+                              style={{ color: "#FFF", textDecoration: "none" }}
+                            >
+                              <EditIcon />
+                            </Link>
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={categories.length}
+                rowsPerPage={categoryRowsPerPage}
+                page={categoryPage}
+                onPageChange={handleCategoryChangePage}
+                onRowsPerPageChange={handleCategoryChangeRowsPerPage}
               />
             </TableContainer>
           </Grid>

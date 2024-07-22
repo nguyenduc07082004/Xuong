@@ -1,124 +1,109 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  CssBaseline,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { TextField, Button, Typography, Box, Grid, Paper } from "@mui/material";
 import { User } from "../../type/Interface";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  const handleRegister = async () => {
-    if (!username || !email || !password || !confirmPassword) {
-      alert("Vui lòng điền đầy đủ thông tin!");
-      return;
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<User>();
 
-    if (password !== confirmPassword) {
-      alert("Mật khẩu và xác nhận mật khẩu không khớp!");
-      return;
-    }
-
+  const onSubmit: SubmitHandler<User> = async (data) => {
     try {
-      const response = await axios.post<User>("http://localhost:3000/users", {
-        username,
-        email,
-        password,
-      });
-      const { _id } = response.data;
-
-      const token = `token-${_id}`;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(response.data));
-
-      alert("Đăng ký thành công!");
-      navigate("/");
+      await axios.post("http://localhost:3000/register", data);
+      alert("Đăng ký thành công");
+      navigate("/login");
     } catch (error) {
-      alert("Đăng ký thất bại. Vui lòng thử lại sau.");
-      console.error("Đăng ký thất bại:", error);
+      alert("Có lỗi xảy ra khi đăng ký");
     }
   };
 
   return (
-    <Grid
-      justifyContent="center"
-      alignItems="center"
-      style={{ minHeight: "100vh" }}
-    >
-      <Grid item xs={12} sm={6}>
-        <Paper
-          elevation={3}
-          sx={{
-            padding: 4,
-            textAlign: "center",
-            maxWidth: "600px",
-            margin: "auto",
-            minHeight: "300px",
-          }}
-        >
-          <Typography
-            variant="h4"
-            component="h1"
-            gutterBottom
-            sx={{ marginBottom: 2 }}
-          >
+    <Grid container component="main" justifyContent="center">
+      <CssBaseline />
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={5}
+        component={Paper}
+        elevation={1}
+        square
+        p={5}
+      >
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Avatar />
+        </Box>
+        <Typography component="h1" variant="h5" my={2} textAlign="center">
+          Đăng ký
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Tên đăng nhập"
+            autoFocus
+            {...register("username", { required: "Tên đăng nhập là bắt buộc" })}
+            error={!!errors?.username?.message}
+            helperText={errors?.username?.message}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            {...register("email", {
+              required: "Email là bắt buộc",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Email không hợp lệ",
+              },
+            })}
+            error={!!errors?.email?.message}
+            helperText={errors?.email?.message}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Mật khẩu"
+            type="password"
+            id="password"
+            {...register("password", {
+              required: "Mật khẩu là bắt buộc",
+              minLength: {
+                value: 6,
+                message: "Mật khẩu phải có ít nhất 6 ký tự",
+              },
+            })}
+            error={!!errors?.password?.message}
+            helperText={errors?.password?.message}
+          />
+          <Button type="submit" fullWidth variant="contained" color="primary">
             Đăng ký
-          </Typography>
-          <Box
-            component="form"
-            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-          >
-            <TextField
-              label="Tên người dùng"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              fullWidth
-              margin="normal"
-              sx={{ maxWidth: "500px", marginBottom: 2 }}
-            />
-            <TextField
-              label="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              fullWidth
-              margin="normal"
-              sx={{ maxWidth: "500px", marginBottom: 2 }}
-            />
-            <TextField
-              label="Mật khẩu"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              fullWidth
-              margin="normal"
-              sx={{ maxWidth: "500px", marginBottom: 2 }}
-            />
-            <TextField
-              label="Xác nhận mật khẩu"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              fullWidth
-              margin="normal"
-              sx={{ maxWidth: "500px", marginBottom: 2 }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleRegister}
-              sx={{ maxWidth: "500px", marginBottom: 2 }}
-            >
-              Đăng ký
-            </Button>
-            <Typography variant="body2" sx={{ marginTop: 2 }}>
-              Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
-            </Typography>
-          </Box>
-        </Paper>
+          </Button>
+        </form>
       </Grid>
     </Grid>
   );

@@ -22,3 +22,17 @@ export const deleteProduct = async (productId: number|string) => {
 };
 
 
+
+
+
+export const getAllCategories = async () => {
+  const response = await axios.get(`http://localhost:3000/categories`);
+  return response.data;
+};
+
+export const deleteCategory = async (categoryId:number| string) => {
+  const response = await axios.delete(`http://localhost:3000/categories/${categoryId}`);
+  return response.data;
+};
+
+

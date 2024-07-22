@@ -7,6 +7,8 @@ import Login from './page/SubmitAdmin/Login';
 import ProductDetail from './component/ProductDetail';
 import AddProduct from './page/admin/Product/AddProduct';
 import EditProduct from './page/admin/Product/EditProduct';
+import AddCategory from './page/admin/Category/AddCategory';
+import EditCategory from './page/admin/Category/EditCategory';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path="/products/:id" element={<ProductDetail/>}/>
       <Route path="/products/add" element={<AddProduct/>}/>
       <Route path="/products/edit/:productId" element={<EditProduct/>}/>
+      <Route path="/categories/add" element={<AddCategory/>}/>
+      <Route path="/categories/edit/:productId" element={<EditCategory/>}/>
       <Route path="/admin" element={<Admin/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
