@@ -39,6 +39,7 @@ const Login: React.FC = () => {
   };
 
   return (
+    <>
     <Grid
       justifyContent="center"
       alignItems="center"
@@ -54,7 +55,7 @@ const Login: React.FC = () => {
             margin: "auto",
             minHeight: "300px",
           }}
-        >
+        > 
           <Typography
             variant="h4"
             component="h1"
@@ -99,6 +100,7 @@ const Login: React.FC = () => {
         </Paper>
       </Grid>
     </Grid>
+    </>
   );
 };
 

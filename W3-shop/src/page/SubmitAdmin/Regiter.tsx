@@ -34,7 +34,8 @@ const Register: React.FC = () => {
   };
 
   return (
-    <Grid container component="main" justifyContent="center">
+    <>
+    <Grid  component="main" justifyContent="center">
       <CssBaseline />
       <Grid
         item
@@ -106,6 +107,7 @@ const Register: React.FC = () => {
         </form>
       </Grid>
     </Grid>
+    </>
   );
 };
 
