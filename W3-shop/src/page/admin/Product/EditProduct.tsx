@@ -20,7 +20,7 @@ import { Products, Category } from "../../../type/Interface";
 
 const EditProduct: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { productId } = useParams();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState<Products | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -36,10 +36,15 @@ const EditProduct: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/products/${id}`);
-        setProduct(res.data);
-        setSelectedCategory(res.data.category);
-        setLoading(false);
+        if(productId){
+          const res = await axios.get(`http://localhost:3000/products/${productId}`);
+          setProduct(res.data);
+          setSelectedCategory(res.data.category);
+          setLoading(false);
+        }else{
+          console.log("không tìm thấy id")
+        }
+       
       } catch (error) {
         console.log('Có lỗi khi tải sản phẩm:', error);
       }
@@ -56,7 +61,7 @@ const EditProduct: React.FC = () => {
 
     fetchProduct();
     fetchCategories();
-  }, [id, navigate]);
+  }, [productId, navigate]);
 
   useEffect(() => {
     if (product) {
@@ -75,7 +80,7 @@ const EditProduct: React.FC = () => {
 
     try {
       const updatedProduct = { ...data, category: selectedCategory };
-      await axios.put(`http://localhost:3000/products/${id}`, updatedProduct);
+      await axios.put(`http://localhost:3000/products/${productId}`, updatedProduct);
       alert("Sản phẩm đã được cập nhật thành công");
       navigate("/admin");
     } catch (error) {

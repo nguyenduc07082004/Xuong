@@ -16,7 +16,7 @@ import { Category } from "../../../type/Interface";
 
 
 const EditCategory: React.FC = () => {
-  const { id } = useParams();
+  const { categoryId } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState<Category | null>(null);
@@ -31,7 +31,7 @@ const EditCategory: React.FC = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/categories/${id}`);
+        const res = await axios.get(`http://localhost:3000/categories/${categoryId}`);
         setCategory(res.data);
         setLoading(false);
       } catch (error) {
@@ -40,7 +40,7 @@ const EditCategory: React.FC = () => {
     };
 
     fetchCategory();
-  }, [id]);
+  }, [categoryId]);
 
   useEffect(() => {
     if (category) {
@@ -50,7 +50,7 @@ const EditCategory: React.FC = () => {
 
   const onSubmit: SubmitHandler<Category> = async (data) => {
     try {
-      await axios.put(`http://localhost:3000/categories/${id}`, data);
+      await axios.put(`http://localhost:3000/categories/${categoryId}`, data);
       alert("Danh mục đã được cập nhật thành công");
       navigate("/admin");
     } catch (error) {
