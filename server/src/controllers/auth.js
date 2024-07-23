@@ -38,6 +38,8 @@ class AuthController {
     try {
       const { email, password } = req.body;
       const { error } = loginValidator.validate(req.body);
+      console.log(email,password,req);
+      
       if (error) {
         const errors = error.details.map((err) => err.message).join(", ");
         throw new ApiError(StatusCodes.BAD_REQUEST, errors);

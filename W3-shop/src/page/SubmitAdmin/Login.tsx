@@ -16,24 +16,24 @@ const Login: React.FC = () => {
     }
 
     try {
-      const response = await axios.get<User[]>(
-        `http://localhost:3000/users/login?email=${email}&password=${password}`
+      const response = await axios.post<User>(
+        `http://localhost:3000/users/login`,{email,password}
       );
 
-      if (response.data.length === 0) {
+      if (response.status !== 200) {
         alert("Đăng nhập thất bại. Email hoặc mật khẩu không đúng.");
         return;
       }
+      const data=response.data.user
 
-      const { _id } = response.data[0];
+      const { _id } = data._id;
       const token = `token-${_id}`;
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(response.data[0]));
+      localStorage.setItem("user", JSON.stringify(data));
 
       alert("Đăng nhập thành công!");
       navigate("/");
     } catch (error) {
-      alert("Đăng nhập thất bại. Vui lòng thử lại sau.");
       console.error("Đăng nhập thất bại:", error);
     }
   };
