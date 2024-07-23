@@ -6,22 +6,22 @@ import { User } from "../../type/Interface";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = async () => {
-    if (!username || !password) {
-      alert("Vui lòng nhập tên người dùng và mật khẩu!");
+    if (!email || !password) {
+      alert("Vui lòng nhập email và mật khẩu!");
       return;
     }
 
     try {
       const response = await axios.get<User[]>(
-        `http://localhost:3000/users?username=${username}&password=${password}`
+        `http://localhost:3000/users/login?email=${email}&password=${password}`
       );
 
       if (response.data.length === 0) {
-        alert("Đăng nhập thất bại. Tên người dùng hoặc mật khẩu không đúng.");
+        alert("Đăng nhập thất bại. Email hoặc mật khẩu không đúng.");
         return;
       }
 
@@ -69,9 +69,9 @@ const Login: React.FC = () => {
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
             <TextField
-              label="Tên người dùng"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               fullWidth
               margin="normal"
               sx={{ maxWidth: "500px", marginBottom: 2 }}

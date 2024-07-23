@@ -25,7 +25,7 @@ const Register: React.FC = () => {
 
   const onSubmit: SubmitHandler<User> = async (data) => {
     try {
-      await axios.post("http://localhost:3000/register", data);
+      await axios.post("http://localhost:3000/users/register", data);
       alert("Đăng ký thành công");
       navigate("/login");
     } catch (error) {

@@ -65,6 +65,19 @@ const AddCategory: React.FC = () => {
               {...register("name", { required: "Tên danh mục là bắt buộc" })}
               error={!!errors?.name?.message}
               helperText={errors?.name?.message}
+         
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="description"
+              label="Mô tả"
+              autoFocus
+              {...register("description", { required: "Tên danh mục là bắt buộc" })}
+              error={!!errors?.description?.message}
+              helperText={errors?.description?.message}
             />
             <Button type="submit" fullWidth variant="contained" color="primary">
               Thêm danh mục
