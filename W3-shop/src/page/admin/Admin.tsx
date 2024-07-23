@@ -1,3 +1,4 @@
+// src/pages/Admin.tsx
 import { useState, useEffect } from "react";
 import { Products, Category } from "../../type/Interface";
 import { getAllProduct, deleteProduct, getAllCategories, deleteCategory } from "../../component/Axios/axios";
@@ -26,14 +27,11 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import AddIcon from "@mui/icons-material/Add";
-import PersonIcon from "@mui/icons-material/Person";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import Sidebar from "./sidebar/Sidebar";
 
 const drawerWidth = 240;
 
@@ -126,71 +124,6 @@ const Admin = () => {
     }
   };
 
-  const drawer = (
-    <div>
-      <Toolbar />
-      <List>
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <ListItem button>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/products/add"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Product" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/categories/add"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Category" />
-          </ListItem>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <ListItem button>
-            <ListItemIcon>
-              <PersonIcon />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-          </ListItem>
-        </Link>
-        <Link
-          to="/settings"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <ListItem button>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary="Log out" />
-          </ListItem>
-        </Link>
-      </List>
-    </div>
-  );
-
   const getCategoryNameById = (categoryId: string|undefined) => {
     const category = categories.find(cat => cat._id === categoryId);
     return category ? category.name:"iphon"
@@ -218,19 +151,7 @@ const Admin = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-      >
-        {drawer}
-      </Drawer>
+      <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
