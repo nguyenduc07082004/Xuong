@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import { Products } from "../type/Interface";
-import { Container, Typography, Card, CardMedia, Box, Grid, Button } from '@mui/material';
-import Header from './Header';
+import {
+  Container,
+  Typography,
+  Card,
+  CardMedia,
+  Box,
+  Grid,
+  Button,
+} from "@mui/material";
+import Header from "./Header";
 import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
@@ -15,32 +23,37 @@ const ProductDetail: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/products/${id}`);
+        const response = await axios.get(
+          `http://localhost:3000/products/${id}`
+        );
         setProduct(response.data);
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error("Error fetching product:", error);
       }
     };
 
     fetchProduct();
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       try {
         const parsedUser = JSON.parse(storedUser);
         setUser(parsedUser);
       } catch (error) {
-        console.error('Không thể lấy thông tin người dùng từ localStorage:', error);
+        console.error(
+          "Không thể lấy thông tin người dùng từ localStorage:",
+          error
+        );
       }
     }
   }, [id]);
 
   const handleIncreaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+      setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
 
@@ -71,27 +84,49 @@ const ProductDetail: React.FC = () => {
             <Typography variant="h4" component="h1" gutterBottom>
               {product.title}
             </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-              {product.description}
-            </Typography>
-            <Typography variant="h5" component="p"  color="text.secondary" gutterBottom>
+            <Typography
+              variant="h5"
+              component="p"
+              color="text.secondary"
+              gutterBottom
+            >
               Price: ${product.price}
             </Typography>
-            <Typography variant="body1" component="p"  color="text.secondary" gutterBottom>
+            <Typography
+              variant="body1"
+              component="p"
+              color="text.secondary"
+              gutterBottom
+            >
               Quantity:
-              <Button variant="outlined" size="small" onClick={handleDecreaseQuantity}>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={handleDecreaseQuantity}
+              >
                 -
               </Button>
-              <Typography variant="body1" component="span" style={{ margin: '0 8px' }}>
+              <Typography
+                variant="body1"
+                component="span"
+                style={{ margin: "0 8px" }}
+              >
                 {quantity}
               </Typography>
-              <Button variant="outlined" size="small" onClick={handleIncreaseQuantity}>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={handleIncreaseQuantity}
+              >
                 +
               </Button>
             </Typography>
-            <Button 
-              variant="contained" 
-              color="primary" 
+            <Typography variant="body1" color="text.secondary" gutterBottom>
+              {product.description}
+            </Typography>
+            <Button
+              variant="contained"
+              color="primary"
               size="large"
               onClick={handleAddToCart}
             >

@@ -126,7 +126,7 @@ const Admin = () => {
     }
   };
 
-  const getCategoryNameById = (idCategory: string | undefined) => {
+  const getCategoryNameById = (idCategory: string | undefined)=> {
     if (idCategory) {
       const category = categories.find((res) => res._id === idCategory);
       console.log(category)
@@ -134,7 +134,6 @@ const Admin = () => {
         return category.name;
       } else {
         return "category";
-        console.log("can not category!!!");
       }
     } else {
       console.log("can not id category");
