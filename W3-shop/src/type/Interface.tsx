@@ -4,7 +4,13 @@ export interface Products {
   imageUrl: string;
   description: string;
   price: number;
-  category?:string;
+  category?: string | undefined;
+}
+
+export interface Category {
+  _id?: number | string;
+  name: string;
+  description?: string;
 }
 
 export interface User {
@@ -12,11 +18,5 @@ export interface User {
   username: string;
   email: string;
   password: string;
-  role:string;
-}
-
-export interface Category{
-  _id?:number|string
-  name:string
-  description?:string
+  role: string;
 }

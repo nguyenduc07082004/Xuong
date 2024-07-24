@@ -1,7 +1,12 @@
 // src/pages/Admin.tsx
 import { useState, useEffect } from "react";
 import { Products, Category } from "../../type/Interface";
-import { getAllProduct, deleteProduct, getAllCategories, deleteCategory } from "../../component/Axios/axios";
+import {
+  getAllProduct,
+  deleteProduct,
+  getAllCategories,
+  deleteCategory,
+} from "../../component/Axios/axios";
 import {
   CircularProgress,
   Table,
@@ -112,16 +117,28 @@ const Admin = () => {
     try {
       if (confirm) {
         await deleteCategory(categoryId);
-        setCategories(categories.filter((category) => category._id !== categoryId));
+        setCategories(
+          categories.filter((category) => category._id !== categoryId)
+        );
       }
     } catch (error) {
       console.error("Lỗi khi xóa danh mục:", error);
     }
   };
 
-  const getCategoryNameById = (categoryId: string|undefined) => {
-    const category = categories.find(cat => cat._id === categoryId);
-    return category ? category.name:"iphon"
+  const getCategoryNameById = (idCategory: string | undefined) => {
+    if (idCategory) {
+      const category = categories.find((res) => res._id === idCategory);
+      console.log(category)
+      if (category) {
+        return category.name;
+      } else {
+        return "category";
+        console.log("can not category!!!");
+      }
+    } else {
+      console.log("can not id category");
+    }
   };
 
   return (
@@ -146,7 +163,10 @@ const Admin = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+      <Sidebar
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+      />
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
@@ -194,7 +214,9 @@ const Admin = () => {
                           />
                         </TableCell>
                         <TableCell align="center">${product.price}</TableCell>
-                        <TableCell align="center">{getCategoryNameById(product.category)}</TableCell>
+                        <TableCell align="center">
+                          {getCategoryNameById(product.category)}
+                        </TableCell>
                         <TableCell align="center">
                           {product.description}
                         </TableCell>
@@ -235,7 +257,12 @@ const Admin = () => {
             </TableContainer>
           </Grid>
         </Grid>
-        <Grid container justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          sx={{ marginTop: 4 }}
+        >
           <Grid item xs={12}>
             <Typography variant="h4" gutterBottom>
               Categories
@@ -265,7 +292,9 @@ const Admin = () => {
                           {category._id}
                         </TableCell>
                         <TableCell align="center">{category.name}</TableCell>
-                        <TableCell align="center">{category.description}</TableCell>
+                        <TableCell align="center">
+                          {category.description}
+                        </TableCell>
                         <TableCell align="center">
                           <Button
                             variant="contained"
