@@ -1,7 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import Product from "../models/ProductModel";
 import ApiError from "../utils/ApiError";
-import Products from "../models/ProductModel";
 
 class ProductsController {
   // GET /products
@@ -24,20 +23,10 @@ class ProductsController {
       next(error);
     }
   }
-  // async getProductEdit(req, res, next) {
-  //   try {
-  //     const product = await Product.findById(req.params.id);
-
-  //     if (!product) throw new ApiError(404, "Product Not Found");
-  //     res.status(StatusCodes.OK).json(product);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
   // POST /products
   async createProduct(req, res, next) {
     try {
-      const newProduct = await Products.create(req.body);
+      const newProduct = await Product.create(req.body);
       res.status(StatusCodes.CREATED).json({
         message: "Create Product Successfull",
         data: newProduct,
