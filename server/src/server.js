@@ -13,7 +13,7 @@ app.use(
 );
 app.use(express.json());
 
-const dbUrl = process.env.DB_URI || "mongodb://127.0.0.1:27017/db_react";
+const dbUrl = process.env.DB_URI || "mongodb://127.0.0.1:27017/W3-Shop";
 
 connectMongoDB(dbUrl);
 

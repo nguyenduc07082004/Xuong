@@ -10,8 +10,8 @@ router.get("/", (req, res) => {
   res.send("Home");
 });
 
-router.use("/users", authRouter);
+router.use("/ursers", authRouter);
 router.use("/categories", categoriesRouter);
 router.use("/products", productsRouter);
-router.use("/cart", cartsRouter);
+router.use("/carts", cartsRouter);
 export default router;
