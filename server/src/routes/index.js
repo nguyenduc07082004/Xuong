@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   res.send("Home");
 });
 
-router.use("/ursers", authRouter);
+router.use("/users", authRouter);
 router.use("/categories", categoriesRouter);
 router.use("/products", productsRouter);
 router.use("/carts", cartsRouter);

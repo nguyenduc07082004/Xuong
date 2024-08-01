@@ -7,6 +7,16 @@ import ApiError from "../utils/ApiError";
 import { getUserByEmail } from "../services/user";
 
 class AuthController {
+
+  async getAllUser(req, res, next) {
+    try {
+      const users = await User.find();
+      res.status(StatusCodes.OK).json(users);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async register(req, res, next) {
     try {
       const { email, username, password } = req.body;
@@ -38,6 +48,7 @@ class AuthController {
     try {
       const { email, password } = req.body;
       const { error } = loginValidator.validate(req.body);
+      console.log(res.body)
       if (error) {
         const errors = error.details.map((err) => err.message).join(", ");
         throw new ApiError(StatusCodes.BAD_REQUEST, errors);
@@ -53,7 +64,7 @@ class AuthController {
       if (!checkPassword)
         throw new ApiError(StatusCodes.BAD_REQUEST, "Tai khoan ko hop le");
 
-      const token = jwt.sign({ id: checkUser._id }, "process.env.SECRET_KEY", {
+      const token = jwt.sign({ id: checkUser.id }, "process.env.SECRET_KEY", {
         expiresIn: "1w",
       });
       res.status(StatusCodes.OK).json({

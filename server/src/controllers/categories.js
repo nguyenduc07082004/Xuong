@@ -14,11 +14,19 @@ class CategoriesController {
   }
   // GET /categories/:id
   async getCategoryDetail(req, res, next) {
+    console.log('====================================');
+    console.log(req.params);
+    console.log('====================================');
     try {
-      const category = await Category.findById(req.params._id);
+      const category = await Category.findById(req.params.id);
+      console.log(category);
 
-      if (!category) throw new ApiError(404, "Category Not Found");
+      if (!category) {
+      throw new ApiError(404, "Category Not Found");
+      }
       res.status(StatusCodes.OK).json(category);
+
+     
     } catch (error) {
       next(error);
     }
@@ -43,7 +51,7 @@ class CategoriesController {
         req.body
       );
       if (!category) throw new ApiError(404, "Category Not Found");
-      const updateCategory = await Category.findById(req.params._id);
+      const updateCategory = await Category.findById(req.params.id);
       res.status(StatusCodes.OK).json({
         message: "Update Category Successfull",
         data: updateCategory,
@@ -55,7 +63,7 @@ class CategoriesController {
   // DELETE /categories/:id
   async deleteCategory(req, res, next) {
     try {
-      const category = await Category.findByIdAndDelete(req.params._id);
+      const category = await Category.findByIdAndDelete(req.params.id);
       if (!category) throw new ApiError(404, "Category Not Found");
       res.status(StatusCodes.OK).json({
         message: "Delete Category Done",
