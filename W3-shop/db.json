@@ -6,7 +6,16 @@
       "description": "Description of Product 1",
       "price": "1000",
       "imageUrl": "https://hatocase.com/wp-content/uploads/2023/08/in-op-lung-dien-thoai-iphone-15-pro-max-theo-yeu-cau-anh-dai-dien.jpg",
-      "category":"category"
+      "category": "category",
+      "id": "ef5a"
+    },
+    {
+      "id": "af08",
+      "title": "IP12",
+      "description": "IP12",
+      "price": "1234557",
+      "imageUrl": "r",
+      "category": "4F32"
     }
   ],
   "users": [
@@ -15,15 +24,17 @@
       "username": "user1",
       "email": "user1@example.com",
       "password": "password1",
-      "role":"memver"
+      "role": "memver",
+      "id": "5f98"
     }
   ],
   "tokens": [],
-  "categories":[
+  "categories": [
     {
-      "_id":"4F32",
-      "name":"iphon",
-      "description":"Description of Product 1"
+      "_id": "4F32",
+      "name": "iphon",
+      "description": "Description of Product 1",
+      "id": "b20f"
     }
   ]
 }
