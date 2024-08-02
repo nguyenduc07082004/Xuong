@@ -10,7 +10,11 @@ import {
   Box,
   Grid,
   Button,
+  Paper,
+  IconButton,
+  Divider,
 } from "@mui/material";
+import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -81,57 +85,60 @@ const ProductDetail: React.FC = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" component="h1" gutterBottom>
-              {product.title}
-            </Typography>
-            <Typography
-              variant="h5"
-              component="p"
-              color="text.secondary"
-              gutterBottom
-            >
-              Price: ${product.price}
-            </Typography>
-            <Typography
-              variant="body1"
-              component="p"
-              color="text.secondary"
-              gutterBottom
-            >
-              Quantity:
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={handleDecreaseQuantity}
+            <Paper elevation={3} sx={{ padding: 2 }}>
+              <Typography variant="h4" component="h1" gutterBottom>
+                {product.title}
+              </Typography>
+              <Divider sx={{ marginY: 2 }} />
+              <Typography
+                variant="h5"
+                component="p"
+                color="text.secondary"
+                gutterBottom
               >
-                -
-              </Button>
+                Price: ${product.price}
+              </Typography>
               <Typography
                 variant="body1"
-                component="span"
-                style={{ margin: "0 8px" }}
+                component="div"
+                color="text.secondary"
+                gutterBottom
+                sx={{ display: "flex", alignItems: "center" }}
               >
-                {quantity}
+                Quantity:
+                <IconButton
+                  color="primary"
+                  size="small"
+                  onClick={handleDecreaseQuantity}
+                  sx={{ marginX: 1 }}
+                >
+                  <RemoveIcon />
+                </IconButton>
+                <Typography variant="body1" component="span">
+                  {quantity}
+                </Typography>
+                <IconButton
+                  color="primary"
+                  size="small"
+                  onClick={handleIncreaseQuantity}
+                  sx={{ marginX: 1 }}
+                >
+                  <AddIcon />
+                </IconButton>
               </Typography>
+              <Typography variant="body1" color="text.secondary" gutterBottom>
+                {product.description}
+              </Typography>
+              <Divider sx={{ marginY: 2 }} />
               <Button
-                variant="outlined"
-                size="small"
-                onClick={handleIncreaseQuantity}
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={handleAddToCart}
               >
-                +
+                Add to Cart
               </Button>
-            </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-              {product.description}
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={handleAddToCart}
-            >
-              Add to Cart
-            </Button>
+            </Paper>
           </Grid>
         </Grid>
       </Box>

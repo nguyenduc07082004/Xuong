@@ -32,7 +32,7 @@ const Register: React.FC = () => {
       alert("Có lỗi xảy ra khi đăng ký");
     }
   };
-
+  
   return (
     <>
     <Grid  component="main" justifyContent="center">
