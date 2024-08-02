@@ -47,7 +47,7 @@ class CategoriesController {
   async updateCategory(req, res, next) {
     try {
       const category = await Category.findByIdAndUpdate(
-        req.params._id,
+        req.params.id,
         req.body
       );
       if (!category) throw new ApiError(404, "Category Not Found");
