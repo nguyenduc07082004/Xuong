@@ -1,7 +1,6 @@
-// Product.tsx
 import React from 'react';
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useNavigate } from 'react-router-dom'; // Import Link and useNavigate
 import { Products } from '../type/Interface';
 
 interface ProductProps {
@@ -9,6 +8,20 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
+  const navigate = useNavigate(); // Hook to programmatically navigate
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+
+  const handleAddToCart = () => {
+    if (!user) {
+      // If no user is logged in, redirect to login page
+      navigate("/login");
+      return;
+    }
+
+    // Redirect to the product detail page or handle add to cart logic here
+    navigate(`/cart`);
+  };
+
   return (
     <Card variant="outlined" sx={{ margin: 2 }}>
       <CardContent>
@@ -26,8 +39,8 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" component={Link} to={`/products/${product._id!}`}>
-          Learn More
+        <Button size="small" onClick={handleAddToCart}>
+          Add to Cart
         </Button>
       </CardActions>
     </Card>
