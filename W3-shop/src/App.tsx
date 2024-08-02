@@ -9,6 +9,7 @@ import AddProduct from './page/admin/Product/AddProduct';
 import EditProduct from './page/admin/Product/EditProduct';
 import AddCategory from './page/admin/Category/AddCategory';
 import EditCategory from './page/admin/Category/EditCategory';
+import Carts from './component/Carts';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       <Route path="/admin" element={<Admin/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
-     
+      <Route path="/cart" element={<Carts />} />
      </Routes>
   )
 }

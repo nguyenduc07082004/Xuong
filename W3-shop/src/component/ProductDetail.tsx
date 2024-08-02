@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Products } from "../type/Interface";
 import {
@@ -20,6 +20,7 @@ import Footer from "./Footer";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // Hook to programmatically navigate
   const [product, setProduct] = useState<Products | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [user, setUser] = useState<{ username: string } | null>(null);
@@ -62,7 +63,27 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} ${product?.title} to cart`);
+    if (product) {
+      // Get existing cart from local storage
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      
+      // Check if item is already in the cart
+      const itemIndex = cart.findIndex((item: Products) => item._id === product._id);
+      
+      if (itemIndex > -1) {
+        // Update quantity of existing item
+        cart[itemIndex].quantity += quantity;
+      } else {
+        // Add new item to the cart
+        cart.push({ ...product, quantity });
+      }
+      
+      // Save updated cart to local storage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      console.log(`Added ${quantity} ${product.title} to cart`);
+      navigate("/cart"); // Redirect to the cart page
+    }
   };
 
   if (!product) {
