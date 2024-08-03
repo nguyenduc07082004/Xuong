@@ -5,13 +5,22 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Products } from "../type/Interface";
 
+interface CartProduct extends Products {
+  quantity: number;
+}
+
 const Carts: React.FC = () => {
-  const [cart, setCart] = useState<Products[]>([]);
+  const [cart, setCart] = useState<CartProduct[]>([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Fetch cart items from local storage
     const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
     setCart(storedCart);
+    
+    // Fetch user from local storage
+    const storedUser = JSON.parse(localStorage.getItem('user') || 'null');
+    setUser(storedUser);
   }, []);
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
@@ -35,7 +44,7 @@ const Carts: React.FC = () => {
   if (cart.length === 0) {
     return (
       <Container>
-        <Header user={null} />
+        <Header user={user} />
         <Typography variant="h4" component="h1" gutterBottom>
           Your Cart is Empty
         </Typography>
@@ -46,7 +55,7 @@ const Carts: React.FC = () => {
 
   return (
     <Container>
-      <Header user={null} />
+      <Header user={user} />
       <Typography variant="h4" component="h1" gutterBottom>
         Your Cart
       </Typography>
@@ -75,20 +84,20 @@ const Carts: React.FC = () => {
                   <TableCell>
                     <Box display="flex" alignItems="center">
                       <IconButton 
-                        onClick={() => handleQuantityChange(item._id, Math.max(1, item.quantity - 1))} 
+                        onClick={() => handleQuantityChange(item._id as string, Math.max(1, item.quantity - 1))} 
                         color="primary"
                       >
                         <RemoveIcon />
                       </IconButton>
                       <Input 
                         value={item.quantity}
-                        onChange={(e) => handleQuantityChange(item._id, Math.max(1, parseInt(e.target.value)))}
+                        onChange={(e) => handleQuantityChange(item._id as string, Math.max(1, parseInt(e.target.value)))}
                         type="number"
                         inputProps={{ min: 1 }}
                         sx={{ width: 50, textAlign: 'center' }}
                       />
                       <IconButton 
-                        onClick={() => handleQuantityChange(item._id, item.quantity + 1)} 
+                        onClick={() => handleQuantityChange(item._id as string, item.quantity + 1)} 
                         color="primary"
                       >
                         <AddIcon />
@@ -96,7 +105,7 @@ const Carts: React.FC = () => {
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => handleRemoveItem(item._id)} color="error">
+                    <IconButton onClick={() => handleRemoveItem(item._id as string)} color="error">
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

@@ -143,25 +143,6 @@ const Admin = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Admin Dashboard
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Sidebar
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
