@@ -112,7 +112,7 @@ const AddProduct: React.FC = () => {
               id="price"
               {...register("price", {
                 required: "Giá là bắt buộc",
-                min: { value: 1000, message: "Giá phải có ít nhất 4 chữ số" },
+                min: { value: 10, message: "Giá phải có ít nhất 4 chữ số" },
                 max: {
                   value: 99999999,
                   message: "Giá phải có tối đa 8 chữ số",
@@ -120,7 +120,7 @@ const AddProduct: React.FC = () => {
               })}
               error={!!errors?.price?.message}
               helperText={errors?.price?.message}
-              InputProps={{ inputProps: { min: 1000, max: 99999999 } }}
+              InputProps={{ inputProps: { min: 10, max: 99999999 } }}
             />
             <TextField
               variant="outlined"
